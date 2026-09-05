@@ -2,271 +2,859 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/IShalkin/oratores/schema/run-artifacts.schema.json",
   "title": "oratores run artifacts",
-  "description": "One run directory per job. Each specialist agent writes exactly one file; the writer reads all of them and produces artifact.md. Every file is optional — a run that skipped a specialist simply has no file for it, and the UI renders an empty panel rather than failing.",
-
+  "description": "This document defines the run-directory artifacts under $defs. Individual files validate against their own $def, not against this root.",
   "$defs": {
-
     "manifest": {
       "title": "agents.json — written by the orchestrator",
       "type": "object",
-      "required": ["run_id", "task", "mode", "agents"],
+      "required": [
+        "run_id",
+        "task",
+        "mode",
+        "agents"
+      ],
       "properties": {
-        "run_id": { "type": "string", "description": "Must equal the directory name — the panel keys off the directory, not this field. Date-prefixing is a habit, not a rule." },
-        "task": { "type": "string", "description": "The request in one line, as the user gave it." },
-        "mode": { "enum": ["Explain", "Design", "Draft", "Review", "Rehearse"] },
-        "form": { "type": "string", "description": "Where the request landed on the form ladder." },
-        "started": { "type": ["string", "null"], "format": "date-time" },
-        "finished": { "type": ["string", "null"], "format": "date-time" },
+        "run_id": {
+          "type": "string",
+          "description": "Must equal the directory name — the panel keys off the directory, not this field. Date-prefixing is a habit, not a rule."
+        },
+        "task": {
+          "type": "string",
+          "description": "The request in one line, as the user gave it."
+        },
+        "mode": {
+          "enum": [
+            "Explain",
+            "Design",
+            "Draft",
+            "Review",
+            "Rehearse"
+          ]
+        },
+        "form": {
+          "type": "string",
+          "description": "Where the request landed on the form ladder."
+        },
+        "started": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "finished": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
         "agents": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["name", "status"],
+            "required": [
+              "name",
+              "status"
+            ],
             "properties": {
-              "name": { "type": "string" },
-              "status": { "enum": ["pending", "running", "done", "failed", "skipped"] },
-              "writes": { "type": "array", "items": { "type": "string" } },
-              "started": { "type": ["string", "null"], "format": "date-time" },
-              "finished": { "type": ["string", "null"], "format": "date-time" },
-              "note": { "type": "string", "description": "Why skipped, or what failed. One line." }
-            }
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "pending",
+                  "running",
+                  "done",
+                  "failed",
+                  "skipped"
+                ]
+              },
+              "writes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "started": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "finished": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "note": {
+                "type": "string",
+                "description": "Why skipped, or what failed. One line."
+              },
+              "authored": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Files whose content this agent produced but did not write. The critic holds no write tool, so it authors findings.json and the orchestrator transcribes it verbatim. Separate from writes on purpose: a manifest that says an agent wrote a file it cannot write hides an unowned transcription step."
+              }
+            },
+            "additionalProperties": false
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "brief": {
       "title": "brief.json — written by oratores-strategist",
       "description": "The required keys are always present. Where the strategist has nothing, the value is null for a scalar or [] for a list — an answer of \"none\", which is a finding. Omitting the key is not an option, because silence and absence then look the same.",
       "type": "object",
-      "required": ["objective", "segments", "primary_segment", "ask"],
+      "required": [
+        "objective",
+        "segments",
+        "primary_segment",
+        "ask"
+      ],
       "properties": {
         "objective": {
           "type": "object",
-          "required": ["audience", "change", "specific_behaviour"],
+          "required": [
+            "audience",
+            "change",
+            "specific_behaviour"
+          ],
           "properties": {
-            "audience": { "type": ["string", "null"] },
-            "change": { "enum": ["understand", "believe", "feel", "do", null], "description": "AUD-01. The highest level the piece must actually reach. null only where the objective itself could not be established." },
-            "specific_behaviour": { "type": ["string", "null"] },
-            "success_metric": { "type": ["string", "null"], "description": "null is allowed and must then be stated as absent, not invented." }
-          }
+            "audience": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "change": {
+              "enum": [
+                "understand",
+                "believe",
+                "feel",
+                "do",
+                null
+              ],
+              "description": "AUD-01. The highest level the piece must actually reach. null only where the objective itself could not be established."
+            },
+            "specific_behaviour": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "success_metric": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "null is allowed and must then be stated as absent, not invented."
+            }
+          },
+          "additionalProperties": false
         },
         "contested": {
           "type": "object",
           "description": "What kind of disagreement this is, before any argument is generated. One lens is enough; more is better.",
           "properties": {
-            "lens": { "type": "string", "description": "How you read the disagreement. Three lenses are defined in this package: stasis and question-type in INV-01, blockage-element in CHG-01. Anything else is your own reading and should be named as plainly as you can rather than dressed in one of these terms." },
-            "finding": { "type": "string" },
-            "question_to_decide": { "type": "string", "description": "The one sentence the audience has to decide. If you cannot write it as a single sentence, the disagreement is not located yet." }
-          }
+            "lens": {
+              "type": "string",
+              "description": "How you read the disagreement. Three lenses are defined in this package: stasis and question-type in INV-01, blockage-element in CHG-01. Anything else is your own reading and should be named as plainly as you can rather than dressed in one of these terms."
+            },
+            "finding": {
+              "type": "string"
+            },
+            "question_to_decide": {
+              "type": "string",
+              "description": "The one sentence the audience has to decide. If you cannot write it as a single sentence, the disagreement is not located yet."
+            }
+          },
+          "additionalProperties": false
         },
         "segments": {
           "type": "array",
           "description": "[] means no segmentation was performed. That is a legal state and a reportable one, not an empty field.",
           "items": {
             "type": "object",
-            "required": ["name", "realistic_action"],
+            "required": [
+              "name",
+              "realistic_action"
+            ],
             "properties": {
-              "name": { "type": "string" },
-              "size": { "type": "string" },
-              "believes": { "type": "string" },
-              "wants": { "type": "string" },
-              "fears": { "type": "string" },
-              "distrusts": { "type": "string" },
-              "accepts_evidence": { "type": "string" },
-              "realistic_action": { "type": "string" },
-              "intensity": { "enum": ["passive", "engaged", "organized"], "description": "Headcount without intensity is misleading; an organized minority outweighs a passive majority." },
-              "language_to_use": { "type": "string" },
-              "language_to_avoid": { "type": "string" }
-            }
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "believes": {
+                "type": "string"
+              },
+              "wants": {
+                "type": "string"
+              },
+              "fears": {
+                "type": "string"
+              },
+              "distrusts": {
+                "type": "string"
+              },
+              "accepts_evidence": {
+                "type": "string"
+              },
+              "realistic_action": {
+                "type": "string"
+              },
+              "intensity": {
+                "enum": [
+                  "passive",
+                  "engaged",
+                  "organized"
+                ],
+                "description": "Headcount without intensity is misleading; an organized minority outweighs a passive majority."
+              },
+              "language_to_use": {
+                "type": "string"
+              },
+              "language_to_avoid": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         },
-        "primary_segment": { "type": ["string", "null"], "description": "The one segment the piece is written to. null where no single segment could be chosen — record why in assumptions.json." },
+        "primary_segment": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The one segment the piece is written to. null where no single segment could be chosen — record why in assumptions.json."
+        },
         "resistance": {
           "type": "object",
           "properties": {
-            "kind": { "enum": ["logical", "emotional", "practical"] },
-            "dominant": { "type": "string" },
-            "anchor": { "type": "string", "description": "The value to anchor to rather than argue against." },
-            "sacrifice_named": { "type": "string" }
-          }
+            "kind": {
+              "enum": [
+                "logical",
+                "emotional",
+                "practical"
+              ]
+            },
+            "dominant": {
+              "type": "string"
+            },
+            "anchor": {
+              "type": "string",
+              "description": "The value to anchor to rather than argue against."
+            },
+            "sacrifice_named": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         },
         "ask": {
           "type": "object",
-          "required": ["one_step"],
+          "required": [
+            "one_step"
+          ],
           "properties": {
-            "one_step": { "type": ["string", "null"], "description": "null where no single next step could be defined. A piece with no ask is a decision, so it is recorded rather than omitted." },
-            "owner": { "type": ["string", "null"] },
-            "boundary": { "type": ["string", "null"] },
-            "how_we_know": { "type": ["string", "null"] },
-            "whole_product": { "type": "array", "items": { "type": "string" }, "description": "Everything the after-state implies but the ask does not say. The standard failure is an ask delivered almost completely, because the missing part is the part nobody owned." }
-          }
+            "one_step": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "null where no single next step could be defined. A piece with no ask is a decision, so it is recorded rather than omitted."
+            },
+            "owner": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "boundary": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "how_we_know": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "whole_product": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Everything the after-state implies but the ask does not say. The standard failure is an ask delivered almost completely, because the missing part is the part nobody owned."
+            }
+          },
+          "additionalProperties": false
         },
-        "heard_before": { "type": "string", "description": "What this audience has already heard on the subject. The field that decides whether the opening can work at all." },
+        "heard_before": {
+          "type": "string",
+          "description": "What this audience has already heard on the subject. The field that decides whether the opening can work at all."
+        },
         "urgency": {
           "type": "object",
           "properties": {
-            "state": { "enum": ["real", "absent", "manufactured"] },
-            "complacency_sources": { "type": "array", "items": { "type": "string" } },
-            "levers": { "type": "array", "items": { "type": "string" }, "description": "Legitimate ways to raise real urgency. Manufacturing it is not one." }
-          }
+            "state": {
+              "enum": [
+                "real",
+                "absent",
+                "manufactured"
+              ]
+            },
+            "complacency_sources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "levers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Legitimate ways to raise real urgency. Manufacturing it is not one."
+            }
+          },
+          "additionalProperties": false
+        },
+        "occasion": {
+          "type": "object",
+          "description": "Where and when this lands. The timing budget in particular is load-bearing downstream: the writer sizes the draft against it.",
+          "properties": {
+            "timing": {
+              "type": "string",
+              "description": "The material budget, which is shorter than the slot."
+            },
+            "slot": {
+              "type": "string",
+              "description": "Position in the programme, and what runs either side."
+            },
+            "setting": {
+              "type": "string",
+              "description": "Room, format, what happens immediately afterwards."
+            },
+            "arena": {
+              "type": "string",
+              "description": "How much control the speaker has over the room and the format."
+            },
+            "arrangement": {
+              "type": "string",
+              "description": "Seating, lectern, screen, whether anyone can be heard from the floor."
+            },
+            "genre": {
+              "type": "string",
+              "description": "What kind of occasion the audience thinks this is."
+            },
+            "register": {
+              "type": "string",
+              "description": "How formal, and how much feeling the culture permits."
+            }
+          },
+          "additionalProperties": false
+        },
+        "secondary_audiences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Who else hears it, or hears about it, and is not the primary segment."
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Anything the strategist needs the run to carry that no other field holds. Not prose for the piece."
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "evidence": {
       "title": "evidence.json — written by oratores-evidence",
       "type": "object",
-      "required": ["claims"],
+      "required": [
+        "claims"
+      ],
       "properties": {
         "claims": {
           "type": "array",
           "description": "[] means the piece rests on no checkable claim. Say so rather than leaving the key out.",
           "items": {
             "type": "object",
-            "required": ["id", "text", "label", "source_status", "source_status_reason"],
+            "required": [
+              "id",
+              "text",
+              "label",
+              "source_status",
+              "source_status_reason"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "text": { "type": "string" },
-              "label": { "enum": ["FACT", "OBSERVATION", "INTERPRETATION", "FORECAST", "HYPOTHESIS", "ASPIRATION"], "description": "LOG-04, the type axis: what kind of assertion this is. A later category must never wear the clothes of an earlier one. Independent of source_status — the type does not mean the claim has been verified." },
-              "source_status": { "enum": ["CHECKED", "UNVERIFIED", "CONTRADICTED", "RECHECK", "NOT_APPLICABLE"], "description": "LOG-04, the source axis: whether anybody checked. CHECKED requires a locator you could produce, and the if/then below refuses it without one. NOT_APPLICABLE means the warrant is the author's own reasoning or intent, so there is no external source to check — an interpretation, a forecast, a hypothesis or an aspiration; a fact nobody got round to checking is UNVERIFIED, not NOT_APPLICABLE. Independent of label — FACT with UNVERIFIED is a real state and the one worth catching before delivery, and softening the label to cover an unchecked source is the defect the two fields exist to prevent." },
-              "source_status_reason": { "type": "string", "description": "One line: what was checked, or what is missing. Every status carries its reason." },
-              "source": { "type": ["string", "null"] },
-              "population": { "type": ["string", "null"] },
-              "date": { "type": ["string", "null"] },
-              "locator": { "type": ["string", "null"], "description": "Required for anything presented as a quotation, and required by the if/then below whenever source_status is CHECKED." },
-              "comparator": { "type": ["string", "null"] },
-              "comparator_chosen_before_direction": { "type": ["boolean", "null"], "description": "null means not recorded, which is itself a finding." },
-              "checked_first_risk": { "enum": ["high", "medium", "low"] }
+              "id": {
+                "type": "string",
+                "description": "File-scoped, so a cross-reference cannot resolve into the wrong file: CLM-1, not C1. Two owned files minting O1 is how a citation lands on a real entry that is not the one meant, with nothing raised."
+              },
+              "text": {
+                "type": "string"
+              },
+              "label": {
+                "enum": [
+                  "FACT",
+                  "OBSERVATION",
+                  "INTERPRETATION",
+                  "FORECAST",
+                  "HYPOTHESIS",
+                  "ASPIRATION"
+                ],
+                "description": "LOG-04, the type axis: what kind of assertion this is. A later category must never wear the clothes of an earlier one. Independent of source_status — the type does not mean the claim has been verified."
+              },
+              "source_status": {
+                "enum": [
+                  "CHECKED",
+                  "UNVERIFIED",
+                  "CONTRADICTED",
+                  "RECHECK",
+                  "NOT_APPLICABLE"
+                ],
+                "description": "LOG-04, the source axis: whether anybody checked. CHECKED requires a locator you could produce, and the if/then below refuses it without one. NOT_APPLICABLE means the warrant is the author's own reasoning or intent, so there is no external source to check — an interpretation, a forecast, a hypothesis or an aspiration; a fact nobody got round to checking is UNVERIFIED, not NOT_APPLICABLE. Independent of label — FACT with UNVERIFIED is a real state and the one worth catching before delivery, and softening the label to cover an unchecked source is the defect the two fields exist to prevent."
+              },
+              "source_status_reason": {
+                "type": "string",
+                "description": "One line: what was checked, or what is missing. Every status carries its reason."
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "population": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "locator": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Required for anything presented as a quotation, and required by the if/then below whenever source_status is CHECKED."
+              },
+              "comparator": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "comparator_chosen_before_direction": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "null means not recorded, which is itself a finding."
+              },
+              "checked_first_risk": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              }
             },
             "if": {
-              "required": ["source_status"],
-              "properties": { "source_status": { "const": "CHECKED" } }
+              "required": [
+                "source_status"
+              ],
+              "properties": {
+                "source_status": {
+                  "const": "CHECKED"
+                }
+              }
             },
             "then": {
               "description": "LOG-04 gate, enforced: nothing is CHECKED without a locator you could produce. null is not a locator.",
-              "required": ["locator"],
-              "properties": { "locator": { "type": "string" } }
-            }
+              "required": [
+                "locator"
+              ],
+              "properties": {
+                "locator": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
           }
         },
         "gaps": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "needed"],
+            "required": [
+              "id",
+              "needed"
+            ],
             "properties": {
-              "id": { "type": "string", "description": "Other files cite gaps by id. Without one the reference has to quote the text, which breaks on the first edit." },
-              "needed": { "type": "string" },
-              "why_it_matters": { "type": "string" },
-              "who_could_supply": { "type": "string" }
-            }
+              "id": {
+                "type": "string",
+                "description": "Other files cite gaps by id. Without one the reference has to quote the text, which breaks on the first edit."
+              },
+              "needed": {
+                "type": "string"
+              },
+              "why_it_matters": {
+                "type": "string"
+              },
+              "who_could_supply": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         },
         "unusable": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "text", "reason"],
+            "required": [
+              "id",
+              "text",
+              "reason"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "text": { "type": "string" },
-              "reason": { "type": "string", "description": "Why it cannot be used. Rejected material is recorded so nobody rediscovers it and uses it." }
+              "id": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why it cannot be used. Rejected material is recorded so nobody rediscovers it and uses it."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "proof_order": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "LOG-03. The order is a decision against the attention condition, not a default, and it is recorded here rather than left in the writer's head.",
+          "properties": {
+            "procedure": {
+              "type": "string",
+              "description": "The procedure this decision belongs to."
+            },
+            "order": {
+              "type": "string",
+              "description": "Which of the orders was chosen."
+            },
+            "attention_condition": {
+              "type": "string",
+              "description": "The reading of the room that selected it. Physically captive and attentionally not are different conditions and select differently."
+            },
+            "leads_with": {
+              "type": "string",
+              "description": "Claim ids the piece opens on."
+            },
+            "reserved_for_close": {
+              "type": "string",
+              "description": "The one strong argument held back."
+            },
+            "weak_but_necessary_sandwiched": {
+              "type": "string",
+              "description": "The necessary-but-weak argument, cut or placed between two strong ones — the sources part here, so the choice is recorded."
+            },
+            "example_placement": {
+              "type": "string",
+              "description": "Before the claim an example does induction and needs several; after it it does the work of a witness and one suffices."
+            },
+            "conclusion_drawing": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Decided per proof and written down, one entry per proof. The literature disagrees on whether to draw the conclusion or leave it to the hearer, and supplies no condition that settles it, so a piece that draws every conclusion or withholds every one is running a habit rather than a decision."
+            },
+            "alternation": {
+              "type": "string",
+              "description": "Proof is not run continuously; what breaks it up."
+            },
+            "buried_middle": {
+              "type": "string",
+              "description": "What sits where attention is lowest, and whether anything load-bearing was left there."
+            },
+            "independent_routes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The routes to the conclusion, one entry each. Independent means an audience that rejects one still has the others."
+            },
+            "routes_note": {
+              "type": "string",
+              "description": "Why the count is what it is."
+            },
+            "note_on_numbers": {
+              "type": "string",
+              "description": "Anything about numeric material that the per-claim fields do not carry."
             }
           }
+        },
+        "verification_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Claim ids in the order somebody should go and check them, cheapest-and-most-load-bearing first. This is NOT checked_first, which belongs to objections.json and means the order a hostile reader attacks in. The two diverge, and calling both by one name hides that a verification owner and a Q&A rehearsal are working from different lists."
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "objections": {
       "title": "objections.json — written by oratores-adversary",
       "type": "object",
-      "required": ["objections"],
+      "required": [
+        "objections"
+      ],
       "properties": {
         "objections": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "objection", "charitable_reading", "where"],
+            "required": [
+              "id",
+              "objection",
+              "charitable_reading",
+              "where"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "objection": { "type": "string" },
-              "charitable_reading": { "type": "string", "description": "At least as strong as the real one. A straw man here is a defect." },
-              "who_holds_it": { "type": "string" },
-              "is_it_correct": { "enum": ["yes", "partly", "no"], "description": "Some objections are correct. That is the cheapest information about the real obstacle." },
-              "underlying_fear": { "type": "string", "description": "REF-01. The objection as stated is rarely the objection held." },
-              "response": { "type": "string" },
-              "limitation": { "type": "string", "description": "REF-01 gates on this: every limitation appears somewhere in the piece. A response with no limitation is either the whole truth or an overclaim, and it has to be one on the record." },
-              "next_action": { "type": "string", "description": "REF-01. What the holder of this objection does next if the answer lands." },
-              "where": { "enum": ["in the piece", "in Q&A", "passed over in silence"], "description": "Answering everything signals fear. Silence is a decision." },
-              "cost_of_answering": { "type": "string" }
-            }
+              "id": {
+                "type": "string",
+                "description": "File-scoped: OBJ-1, not O1. candidates.json also mints O-prefixed ids for openings."
+              },
+              "objection": {
+                "type": "string"
+              },
+              "charitable_reading": {
+                "type": "string",
+                "description": "At least as strong as the real one. A straw man here is a defect."
+              },
+              "who_holds_it": {
+                "type": "string"
+              },
+              "is_it_correct": {
+                "enum": [
+                  "yes",
+                  "partly",
+                  "no"
+                ],
+                "description": "Some objections are correct. That is the cheapest information about the real obstacle."
+              },
+              "underlying_fear": {
+                "type": "string",
+                "description": "REF-01. The objection as stated is rarely the objection held."
+              },
+              "response": {
+                "type": "string"
+              },
+              "limitation": {
+                "type": "string",
+                "description": "REF-01 gates on this: every limitation appears somewhere in the piece. A response with no limitation is either the whole truth or an overclaim, and it has to be one on the record."
+              },
+              "next_action": {
+                "type": "string",
+                "description": "REF-01. What the holder of this objection does next if the answer lands."
+              },
+              "where": {
+                "enum": [
+                  "in the piece",
+                  "in Q&A",
+                  "passed over in silence"
+                ],
+                "description": "Answering everything signals fear. Silence is a decision."
+              },
+              "cost_of_answering": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         },
-        "checked_first": { "type": "array", "items": { "type": "string" }, "description": "Claim ids a hostile reader checks first, in order." },
+        "checked_first": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Claim ids a hostile reader checks first, in order."
+        },
         "mechanism_carrying": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["passage", "mechanism", "stated_cost"],
+            "required": [
+              "passage",
+              "mechanism",
+              "stated_cost"
+            ],
             "properties": {
-              "passage": { "type": "string" },
-              "mechanism": { "type": "string" },
-              "stated_cost": { "type": "string", "description": "Required. Use \"unpriced\" where the literature gives none — unknown, not free. Never invent one." },
-              "alternative": { "type": "string" },
-              "alternative_cost": { "type": "string" }
-            }
+              "passage": {
+                "type": "string"
+              },
+              "mechanism": {
+                "type": "string"
+              },
+              "stated_cost": {
+                "type": "string",
+                "description": "Required. Use \"unpriced\" where the literature gives none — unknown, not free. Never invent one."
+              },
+              "alternative": {
+                "type": "string"
+              },
+              "alternative_cost": {
+                "type": "string"
+              },
+              "stated_out_loud": {
+                "type": "string",
+                "description": "PTH-05's test, and its answer, written beside the decision taken. The test is imperfect by its own description, so it decides nothing — it stops the question going unasked."
+              }
+            },
+            "additionalProperties": false
           }
         },
         "dissent_position": {
           "type": "object",
           "description": "MEC-02. Written down with the position rejected.",
           "properties": {
-            "position": { "type": "integer", "minimum": 1, "maximum": 5 },
-            "rejected": { "type": "integer", "minimum": 1, "maximum": 5 },
-            "why": { "type": "string" }
-          }
+            "position": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "rejected": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "why": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "checked_first_note": {
+          "type": "string",
+          "description": "Why this order differs from any other in the run, if it does. A divergence nobody explains reads as an error."
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "candidates": {
       "title": "candidates.json — written by oratores-invention",
       "description": "Deliberately unfiltered. Quantity is the point: the strong option usually appears after four or five have percolated up, and the first one is the cliche.",
       "type": "object",
-      "required": ["sets"],
+      "required": [
+        "sets"
+      ],
       "properties": {
         "sets": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["for", "generator", "candidates"],
+            "required": [
+              "for",
+              "generator",
+              "candidates"
+            ],
             "properties": {
-              "for": { "type": "string", "description": "the coined line | the central metaphor | the opening | an argument | a joke | the title | the story" },
-              "generator": { "type": "string", "description": "What produced these. Name the generator from INV-03 where you ran one of its sets — antonym pairs, rhyme families, repeated word, consonant clusters, word-map, one domain walked, the topic scan, found or built parallel, the six senses, statement into scene, clustering, the disconnect, defeated expectation, borrowing. Where you ran something else, describe it in your own words rather than picking the nearest label." },
+              "for": {
+                "type": "string",
+                "description": "the coined line | the central metaphor | the opening | an argument | a joke | the title | the story"
+              },
+              "generator": {
+                "type": "string",
+                "description": "What produced these. Name the generator from INV-03 where you ran one of its sets — antonym pairs, rhyme families, repeated word, consonant clusters, word-map, one domain walked, the topic scan, found or built parallel, the six senses, statement into scene, clustering, the disconnect, defeated expectation, borrowing. Where you ran something else, describe it in your own words rather than picking the nearest label."
+              },
               "candidates": {
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "required": ["id", "text", "status"],
+                  "required": [
+                    "id",
+                    "text",
+                    "status"
+                  ],
                   "properties": {
-                    "id": { "type": "string", "description": "Short and stable. kept cites these, not the text." },
-                    "text": { "type": "string" },
-                    "status": { "enum": ["open", "kept", "refused"], "description": "refused is machine-readable on purpose: a candidate killed by a note in prose is a candidate a later reader will use." },
-                    "device": { "type": "string" },
-                    "survives_paraphrase": { "type": ["boolean", "null"], "description": "If it dies when reworded, the effect lives in the wording: do not translate it, do not touch it in revision, do not hand it to a speaker to reword." },
-                    "note": { "type": "string" }
-                  }
+                    "id": {
+                      "type": "string",
+                      "description": "Short and stable. kept cites these, not the text."
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "open",
+                        "kept",
+                        "refused"
+                      ],
+                      "description": "refused is machine-readable on purpose: a candidate killed by a note in prose is a candidate a later reader will use."
+                    },
+                    "device": {
+                      "type": "string"
+                    },
+                    "survives_paraphrase": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "If it dies when reworded, the effect lives in the wording: do not translate it, do not touch it in revision, do not hand it to a speaker to reword."
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
-              "kept": { "type": "array", "items": { "type": "string" }, "description": "Candidate ids, not candidate text." },
-              "first_refused": { "type": ["boolean", "null"] }
-            }
+              "kept": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Candidate ids, not candidate text."
+              },
+              "first_refused": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "choices": {
       "title": "choices.json — written by any agent, decided by the author",
       "description": "The package's central feature. Where two constructions produce genuinely different results, both are offered with the trade-off each source states. An option with no stated cost carries \"unpriced\", which means unknown rather than free.",
@@ -276,58 +864,133 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "question", "options"],
+            "required": [
+              "id",
+              "question",
+              "options"
+            ],
             "properties": {
-              "id": { "type": "string", "description": "Prefixed with the writing agent's letter — CH-S1, CH-E1, CH-A1, CH-I1. Specialists run in parallel and cannot see each other; an unprefixed sequential id collides silently and one entry is lost." },
-              "question": { "type": "string" },
-              "procedure": { "type": "string", "description": "The procedure ID this choice belongs to." },
-              "raised_by": { "type": "string" },
+              "id": {
+                "type": "string",
+                "description": "Prefixed with the writing agent's letter — CH-S1, CH-E1, CH-A1, CH-I1. Specialists run in parallel and cannot see each other; an unprefixed sequential id collides silently and one entry is lost."
+              },
+              "question": {
+                "type": "string"
+              },
+              "procedure": {
+                "type": "string",
+                "description": "The procedure ID this choice belongs to."
+              },
+              "raised_by": {
+                "type": "string"
+              },
               "options": {
                 "type": "array",
                 "minItems": 2,
                 "items": {
                   "type": "object",
-                  "required": ["label", "effect", "cost", "sourced"],
+                  "required": [
+                    "label",
+                    "effect",
+                    "cost",
+                    "sourced"
+                  ],
                   "properties": {
-                    "label": { "type": "string" },
-                    "effect": { "type": "string" },
-                    "cost": { "type": "string", "description": "Required, because omitting a cost and having none are different states. \"unpriced\" is the answer where no source states one, and means unknown rather than free. Never invent one to fill the field." },
-                    "condition": { "type": "string", "description": "When this option is the right one." },
-                    "sourced": { "type": "boolean", "description": "Required, so that leaving it out cannot pass as sourced. false means this trade-off is the agent's judgement rather than a documented one, and renders visibly differently." }
-                  }
+                    "label": {
+                      "type": "string"
+                    },
+                    "effect": {
+                      "type": "string"
+                    },
+                    "cost": {
+                      "type": "string",
+                      "description": "Required, because omitting a cost and having none are different states. \"unpriced\" is the answer where no source states one, and means unknown rather than free. Never invent one to fill the field."
+                    },
+                    "condition": {
+                      "type": "string",
+                      "description": "When this option is the right one."
+                    },
+                    "sourced": {
+                      "type": "boolean",
+                      "description": "Required, so that leaving it out cannot pass as sourced. false means this trade-off is the agent's judgement rather than a documented one, and renders visibly differently."
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
-              "recommended": { "type": ["string", "null"] },
+              "recommended": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
               "conflict": {
-                "type": ["object", "null"],
+                "type": [
+                  "object",
+                  "null"
+                ],
                 "description": "Set when two specialists disagreed. Surfaced as a choice rather than resolved silently — the anti-seam rule.",
                 "properties": {
-                  "between": { "type": "array", "items": { "type": "string" } },
-                  "about": { "type": "string" }
+                  "between": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "about": {
+                    "type": "string"
+                  }
                 }
               }
-            }
+            },
+            "additionalProperties": false
           }
         },
         "decided": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "chose"],
+            "required": [
+              "id",
+              "chose"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "question": { "type": "string" },
-              "chose": { "type": "string" },
-              "rejected": { "type": "array", "items": { "type": "string" } },
-              "by": { "enum": ["author", "default", "agent"] },
-              "at": { "type": "string", "format": "date-time" },
-              "note": { "type": "string" }
-            }
+              "id": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              },
+              "chose": {
+                "type": "string"
+              },
+              "rejected": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "by": {
+                "enum": [
+                  "author",
+                  "default",
+                  "agent"
+                ]
+              },
+              "at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "assumptions": {
       "title": "assumptions.json — written by any agent that could not ask",
       "description": "A forked or non-interactive agent has no return path, so it does not ask — it defaults, records what it defaulted, and delivers. The author corrects here and re-runs.",
@@ -337,17 +1000,54 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "input", "assumed", "because"],
+            "required": [
+              "id",
+              "input",
+              "assumed",
+              "because"
+            ],
             "properties": {
-              "id": { "type": "string", "description": "Prefixed with the writing agent's letter — AS-S1, AS-E1. Parallel specialists cannot see each other's ids." },
-              "input": { "type": "string" },
-              "assumed": { "type": "string" },
-              "because": { "type": "string" },
-              "changes_what": { "type": "string", "description": "What in the deliverable moves if this is wrong." },
-              "confidence": { "enum": ["safe", "material", "blocking"] },
-              "corrected_to": { "type": ["string", "null"], "description": "Written by the UI when the author overrides. No agent writes this." },
-              "corrected_at": { "type": ["string", "null"], "format": "date-time", "description": "Written by the UI beside corrected_to. No agent writes this." }
-            }
+              "id": {
+                "type": "string",
+                "description": "Prefixed with the writing agent's letter — AS-S1, AS-E1. Parallel specialists cannot see each other's ids."
+              },
+              "input": {
+                "type": "string"
+              },
+              "assumed": {
+                "type": "string"
+              },
+              "because": {
+                "type": "string"
+              },
+              "changes_what": {
+                "type": "string",
+                "description": "What in the deliverable moves if this is wrong."
+              },
+              "confidence": {
+                "enum": [
+                  "safe",
+                  "material",
+                  "blocking"
+                ]
+              },
+              "corrected_to": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Written by the UI when the author overrides. No agent writes this."
+              },
+              "corrected_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Written by the UI beside corrected_to. No agent writes this."
+              }
+            },
+            "additionalProperties": false
           }
         },
         "blocking_gaps": {
@@ -355,65 +1055,157 @@
           "description": "Inputs with no defensible default. Delivered as a specified gap, never filled with generic material.",
           "items": {
             "type": "object",
-            "required": ["input", "specified_as"],
+            "required": [
+              "id",
+              "input",
+              "specified_as"
+            ],
             "properties": {
-              "input": { "type": "string" },
-              "specified_as": { "type": "string" },
-              "cannot_be_defaulted_because": { "type": "string" }
-            }
+              "id": {
+                "type": "string",
+                "description": "BG1, BG2… Other files cite these, and by ordinal position they silently drift when anyone inserts one. Mint them once, at the end, by whoever can see every file."
+              },
+              "input": {
+                "type": "string"
+              },
+              "specified_as": {
+                "type": "string"
+              },
+              "cannot_be_defaulted_because": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
-
     "findings": {
       "title": "findings.json — written by oratores-critic",
       "type": "object",
-      "required": ["findings"],
+      "required": [
+        "findings"
+      ],
       "properties": {
         "findings": {
           "type": "array",
           "description": "Worst first. Anything that cannot be anchored is dropped, not softened.",
           "items": {
             "type": "object",
-            "required": ["id", "verdict", "claim", "failure"],
+            "required": [
+              "id",
+              "verdict",
+              "claim",
+              "failure"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "verdict": { "enum": ["CONFIRMED", "SUSPECTED"] },
-              "severity": { "type": "integer", "minimum": 1, "description": "A rank, not a scale: 1 is the worst finding in this run, 2 the next. The panel sorts ascending." },
+              "id": {
+                "type": "string"
+              },
+              "verdict": {
+                "enum": [
+                  "CONFIRMED",
+                  "SUSPECTED"
+                ]
+              },
+              "severity": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "A rank, not a scale: 1 is the worst finding in this run, 2 the next. The panel sorts ascending."
+              },
               "anchor": {
                 "type": "object",
                 "properties": {
-                  "file": { "type": "string" },
-                  "line": { "type": ["integer", "null"] },
-                  "slide": { "type": ["integer", "null"] },
-                  "quote": { "type": "string" }
-                }
+                  "file": {
+                    "type": "string"
+                  },
+                  "line": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "slide": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "quote": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
               },
-              "claim": { "type": "string" },
-              "failure": { "type": "string", "description": "Concrete inputs or state, then the wrong output." },
-              "direction": { "enum": ["severe", "lenient"], "description": "Which way the piece fails if nobody catches this. severe: it passes silently and the piece asserts more than it can carry — the reader is left believing something the evidence does not support. lenient: it costs effect but not standing — the piece hedges, omits or undersells something it could have said. Severe first, always." },
-              "smallest_fix": { "type": "string" }
-            }
+              "claim": {
+                "type": "string"
+              },
+              "failure": {
+                "type": "string",
+                "description": "Concrete inputs or state, then the wrong output."
+              },
+              "direction": {
+                "enum": [
+                  "severe",
+                  "lenient"
+                ],
+                "description": "Which way the piece fails if nobody catches this. severe: it passes silently and the piece asserts more than it can carry — the reader is left believing something the evidence does not support. lenient: it costs effect but not standing — the piece hedges, omits or undersells something it could have said. Severe first, always."
+              },
+              "smallest_fix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
           }
         },
-        "coverage": { "type": "array", "items": { "type": "string" } },
-        "not_reviewed": { "type": "array", "items": { "type": "string" }, "description": "Named, not omitted. A review that does not say what it skipped is not a review." }
-      }
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "not_reviewed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Named, not omitted. A review that does not say what it skipped is not a review."
+        },
+        "transcription": {
+          "type": "string",
+          "description": "Who authored these findings and who wrote the file, where those differ. The critic cannot write, so the orchestrator transcribes — and the orchestrator is the party being reviewed."
+        }
+      },
+      "additionalProperties": false
     }
   },
-
   "type": "object",
-  "description": "This document defines the run-directory artifacts under $defs. Individual files validate against their own $def, not against this root.",
   "properties": {
-    "agents.json": { "$ref": "#/$defs/manifest" },
-    "brief.json": { "$ref": "#/$defs/brief" },
-    "evidence.json": { "$ref": "#/$defs/evidence" },
-    "objections.json": { "$ref": "#/$defs/objections" },
-    "candidates.json": { "$ref": "#/$defs/candidates" },
-    "choices.json": { "$ref": "#/$defs/choices" },
-    "assumptions.json": { "$ref": "#/$defs/assumptions" },
-    "findings.json": { "$ref": "#/$defs/findings" },
+    "agents.json": {
+      "$ref": "#/$defs/manifest"
+    },
+    "brief.json": {
+      "$ref": "#/$defs/brief"
+    },
+    "evidence.json": {
+      "$ref": "#/$defs/evidence"
+    },
+    "objections.json": {
+      "$ref": "#/$defs/objections"
+    },
+    "candidates.json": {
+      "$ref": "#/$defs/candidates"
+    },
+    "choices.json": {
+      "$ref": "#/$defs/choices"
+    },
+    "assumptions.json": {
+      "$ref": "#/$defs/assumptions"
+    },
+    "findings.json": {
+      "$ref": "#/$defs/findings"
+    },
     "artifact.md": {
       "type": "string",
       "description": "The deliverable, written by the writer and by no one else. Markdown, so it is not validated here; it is listed so that the run directory is completely described rather than described except for its output. Where an input had no defensible default, it carries an inline marker of the form [gap: what belongs here, and who holds it] instead of generic filler. The panel highlights those markers."
