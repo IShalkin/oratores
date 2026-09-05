@@ -104,6 +104,10 @@
             },
             "additionalProperties": false
           }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Anything about the run as a whole that no per-agent field holds — a clock that was misread, a stage nobody observed, a reason a timestamp was left wrong rather than rewritten. A wrong value that is labelled is better than a corrected one nobody observed."
         }
       },
       "additionalProperties": false

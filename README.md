@@ -195,6 +195,14 @@ python skills/oratores/scripts/check_links.py
 
 The first checks layout, frontmatter, procedure-heading numbering, index coverage in both directions, module-map counts, the ten boundaries, fork-skill wiring, the critic's tool grant, and the agent roster — that every agent named in the ownership table exists, that no module is owned twice or left unowned, and that no specialist has lost the rule forbidding it to write prose. CI additionally validates any run artifact against the schema — which is a guard for a fork of this repo that commits its runs, since `run/` is git-ignored here and the step finds nothing to do on a clean clone. The second checks that every relative link resolves. Both run on every push and pull request.
 
+## Evals
+
+Four prompts, run with the skill and with no skill, graded by script. Prompts, checks, result and the trade-off it costs are in [evals/](evals/).
+
+The short version: on single well-posed prompts the measurable gap is small — a capable model without this package already refuses to invent a figure, already offers options with costs, already delivers words when words were asked for. What it does not do is catch the numbers it invented and then certified as clean in its own notes. Three of the four with-skill runs called the critic on their own draft, and it found invented quantities, claim rows marked `CHECKED` against evidence the agent never had, and two of a run's own regressions. Every one of those errors failed in the direction of passing.
+
+`evals/README.md` also records the four assertions that were wrong before the skill was, because that is the more useful half.
+
 ## License
 
 [MIT](LICENSE)
