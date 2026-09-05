@@ -42,12 +42,12 @@ For anything longer than a page, or anything whose evidence, objections or coine
 
 | Agent | Owns | Writes |
 |---|---|---|
-| **you** | `MSG` `LNG` `OPN` `NAR` `PTH` `ETH` `VIS` `DLV` `ACT` `CMP` `EXE` | `artifact.md`, `agents.json` |
+| **you** | `MSG` `LNG` `OPN` `NAR` `PTH` `ETH` `VIS` `DLV` `ACT` `CMP` `EXE` | `artifact.md`, `agents.json`, `findings.json` |
 | `oratores-strategist` | `AUD` `CHG` `OCC` | `brief.json` |
 | `oratores-evidence` | `LOG` `DAT` `SRC` | `evidence.json` |
 | `oratores-adversary` | `REF` `MEC` | `objections.json` |
 | `oratores-invention` | `INV` | `candidates.json` |
-| `oratores-critic` | `REV` | — *produces* the findings; cannot write |
+| `oratores-critic` | `REV` | — *authors* `findings.json`; holds no write tool |
 
 `choices.json` and `assumptions.json` are shared: any agent appends, nobody rewrites another's entries.
 

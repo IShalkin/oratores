@@ -164,6 +164,23 @@ The multi-agent layer was designed, contracted, schema'd, given a panel and a ha
 
 The pattern across all six: **every one is a place where two things that were separately correct were never checked against each other.** That is what an execution finds and a reading does not, and it is why the sample run written by hand contained none of them.
 
+## What the second review found, which is worse
+
+The revision that discharged those twenty-five findings was reviewed again by the same critic on a fresh context. It confirmed eleven fixes, called five partial, and found four claimed as discharged that were not. It also produced twenty new findings, and **four of them were caused by the fixes.**
+
+That is the part worth keeping. Not that a first draft has defects — that is ordinary. That **a fix, written by the party that caused the defect, with the finding in front of it, reliably introduces a new one nearby.**
+
+Four examples, all mine:
+
+- A finding said an objection was conceded with no owner named, because the owner sat inside a bracketed writer's note the audience would never hear. The fix moved it into the spoken text and, filling the sentence out, added a location, a request the speaker was said to have made, and a consequence for leadership's silence — three checkable claims that appear nowhere else in the run, on the sentence carrying the piece's one genuine concession.
+- A finding said the piece named four alternatives it never listed. The fix listed four. They were not the run's four: the two that would have cost the talk something were dropped, one was substituted from a candidate whose own note calls it *the innocent cause that would account for the damaging appearance*, and a fifth nobody had advanced was added so that eliminating it looked like progress. A concession that concedes nothing expensive is worse than none.
+- A finding said a gap marker was missing under a blocked section. The fix added a conforming marker asserting there was no fallback for the close — while the file the marker cites records one, chosen precisely for the case where that gap never lands.
+- And the one against this document's own subject: a finding said the manifest could not distinguish a completed stage from one that never ran, because its timestamps were filled in one pass. The fix told every agent to write its own. That contradicted the rule that the manifest has a single writer, and the manifest carries neither the append discipline nor the id prefixes that make a shared file survivable — so a bookkeeping defect became a concurrency defect on the run's own record of itself.
+
+The pattern under all four is the pattern from the first run, one turn later: **two things separately correct, never checked against each other.** A fix is written against the finding, and the finding is a paragraph, not the whole run.
+
+What follows for the package is not a new rule to obey. It is why the critic holds no write tool, and why that is the one property here enforced by mechanism. A producer that could apply its own review would apply it the way these four were applied — locally, plausibly, and with a new defect in the neighbourhood — and would then report the debt discharged, in a table, in the file it wrote. That table is now the record, and the party that wrote it is the party being audited. Nothing in the package detects a false row in it. The second review is the only thing that did.
+
 ## The second filter, and why there is not one
 
 A package like this has an obvious-looking safety move available: document the ugly mechanisms, then add a gate that refuses them. It costs one line per module and it reads as responsible.

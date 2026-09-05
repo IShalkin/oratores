@@ -8,19 +8,19 @@ Every file is optional. A skipped specialist leaves no file — a valid finished
 
 | Agent | File | Contents |
 |---|---|---|
-| `oratores` (writer) | `artifact.md` | The deliverable — the only prose in the run |
+| `oratores` (orchestrator and writer) | `artifact.md`, `agents.json`, `findings.json` | The deliverable — the only prose in the run — plus the manifest, and the critic's findings transcribed verbatim |
 | `oratores-strategist` | `brief.json` | Objective, segments, primary segment, resistance, ask |
 | `oratores-evidence` | `evidence.json` | Labelled claims with locators, gaps, unusable material |
 | `oratores-adversary` | `objections.json` | Charitable objections, where each is met, mechanism cost |
 | `oratores-invention` | `candidates.json` | Unfiltered lines, metaphors, openings, titles |
-| `oratores-critic` | — | Produces the findings; holds no write tool, so the orchestrator transcribes them verbatim into `findings.json` |
+| `oratores-critic` | — (`authored`: `findings.json`) | Produces the findings; holds no write tool, so the orchestrator writes the file. The manifest records both sides, so the transcription step has a named owner rather than being a step nobody performed |
 | any agent | `choices.json` | Open decisions with priced options; decided ones |
 | any agent | `assumptions.json` | What was defaulted, why, what moves if it is wrong |
 | orchestrator | `agents.json` | Run manifest: id, task, mode, per-agent status |
 
 ## agents.json
 
-The orchestrator's file, and no one else's. Required: `run_id`, `task`, `mode`, `agents`. `run_id` is the directory name, date-prefixed and readable. `task` is the request in one line as the user gave it, not a tidied paraphrase. `mode` is Explain, Design, Draft, Review or Rehearse; `form` records the rung reached on the form ladder. Write your own `finished` when you exit, from your own clock. An orchestrator filling them in afterwards produces a manifest where three parallel agents share a timestamp to the second and the writer's stage has zero duration — which cannot distinguish a completed stage from one that never ran. Each agent entry needs `name` and a `status` — pending, running, done, failed, skipped — and takes `writes`, `authored` (files whose content it produced but did not write — the critic's case), `started`, `finished`, and a one-line `note` for why it was skipped or what failed.
+The orchestrator's file, and no one else's. Required: `run_id`, `task`, `mode`, `agents`. `run_id` is the directory name, date-prefixed and readable. `task` is the request in one line as the user gave it, not a tidied paraphrase. `mode` is Explain, Design, Draft, Review or Rehearse; `form` records the rung reached on the form ladder. **The orchestrator stamps `finished` on each agent as it returns, not in one pass at the end.** It is the only writer of this file — `agents.json` carries neither the append discipline nor the id prefixes that make the two shared files survivable, so three parallel agents writing into it is the concurrency failure described below rather than a fix for anything. Stamping on return is a real clock reading at a real moment and it separates the stages; filling every field in one pass at the end produces a manifest where three parallel agents share a timestamp to the second and the writer's stage has zero duration, which cannot distinguish a completed stage from one that never ran. The reading is when the orchestrator observed the return, which is slightly later than the agent's own finish, and that is the honest limit of it. Each agent entry needs `name` and a `status` — pending, running, done, failed, skipped — and takes `writes`, `authored` (files whose content it produced but did not write — the critic's case), `started`, `finished`, and a one-line `note` for why it was skipped or what failed.
 
 ```json
 {"run_id": "2026-09-05-board-q3", "mode": "Draft",
@@ -89,7 +89,7 @@ Shared, and the point of the contract. Under `open`, each entry needs `id`, `que
 
 ## assumptions.json
 
-Shared. Each entry under `assumptions` needs `id`, `input`, `assumed` and `because`, and should carry `changes_what` — what in the deliverable moves if this is wrong — and a `confidence` of safe, material or blocking. Leave `corrected_to` and `corrected_at` alone; the panel writes both, and no agent writes either. Under `blocking_gaps`, each entry needs `input` and `specified_as`, plus `cannot_be_defaulted_because`.
+Shared. Each entry under `assumptions` needs `id`, `input`, `assumed` and `because`, and should carry `changes_what` — what in the deliverable moves if this is wrong — and a `confidence` of safe, material or blocking. Leave `corrected_to` and `corrected_at` alone; the panel writes both, and no agent writes either. Under `blocking_gaps`, each entry needs an `id` — `BG1`, `BG2` — plus `input` and `specified_as`, and should carry `cannot_be_defaulted_because`. The id is required because other files cite these, and cited by ordinal position they silently move the moment anyone appends a gap: on the first live run three of four references in the brief ended up pointing at the wrong gap, so a blocker chased from the brief would have been reported to the wrong owner.
 
 ```json
 {"assumptions": [{"id": "A1", "input": "slot length", "assumed": "20 minutes",

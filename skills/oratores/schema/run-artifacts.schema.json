@@ -1058,7 +1058,8 @@
             "required": [
               "id",
               "input",
-              "specified_as"
+              "specified_as",
+              "cannot_be_defaulted_because"
             ],
             "properties": {
               "id": {
