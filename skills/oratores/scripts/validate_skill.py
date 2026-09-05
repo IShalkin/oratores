@@ -354,6 +354,27 @@ def check_procedure_sections() -> None:
                 )
 
 
+def check_agent_question_gate() -> None:
+    """The seven-question cap must never appear unconditioned in an agent file.
+
+    Every fork binds to an agent, so the agent definition is where the
+    instruction actually reaches a run with no return path. The fork check below
+    scanned the files that carry no behaviour and missed the ones that do.
+    """
+    for name in AGENTS:
+        path = REPO / "agents" / name
+        if not path.is_file():
+            continue
+        text = read(path)
+        asks = any(p in text for p in ("ask at most seven", "ask at most 7", "ask \u2014 at most"))
+        if asks and "do not ask at all" not in text:
+            errors.append(
+                f"agents/{name}: states the seven-question cap without the "
+                "condition that an answer can reach you; a fork binding to this "
+                "agent will ask a question nothing can answer"
+            )
+
+
 def check_fork_question_gate() -> None:
     """A forked skill must not instruct the model to ask the caller anything.
 
@@ -530,6 +551,7 @@ def main() -> int:
     check_boundaries()
     check_fork_wiring()
     check_fork_question_gate()
+    check_agent_question_gate()
     check_critic_tool_grant()
     check_no_maintainer_leak()
     check_agent_roster()

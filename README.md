@@ -26,7 +26,7 @@ It is built to **offer options with their costs**, not to pick for you. Where tw
 
 **Hook-free.** Nothing in the package requires a hook, because some environments forbid them by policy. The critic is read-only because `Write`, `Edit` and `Bash` are absent from its tool grant — a tool never granted is a mechanism, while a filter over commands is best-effort. The validators check that the grant has not drifted.
 
-**One agent, or six.** Below a stated threshold you are one agent and write nothing but the deliverable; above it, four specialists produce structured fields into a run directory and one agent writes the prose. Which module each agent owns is a table in `agents/oratores.md`, and the validator fails the build if a module is owned twice or left unowned. The file contract is [`run-artifacts.md`](skills/oratores/references/run-artifacts.md) with a JSON Schema beside it. Three rules keep the parts from reading as parts: only the writer writes prose, a disagreement between two specialists becomes an open choice rather than a silent resolution, and `"unpriced"` is written where the literature states no cost — meaning unknown, not free.
+**One agent, or six.** Below a stated threshold you are one agent and write nothing but the deliverable; above it, four specialists produce structured fields into a run directory and one agent writes the prose. Which module each agent owns is a table in `agents/oratores.md`, and the validator fails the build if a module is owned twice or left unowned. The file contract is [`run-artifacts.md`](skills/oratores/references/run-artifacts.md) with a JSON Schema beside it. Four rules keep the parts from reading as parts: only the writer writes prose; a disagreement between two specialists becomes an open choice rather than a silent resolution; `"unpriced"` is written where the literature states no cost, meaning unknown rather than free; and every candidate lifted into the draft carries its id, without which nothing can check that the draft used kept material rather than refused material.
 
 ## Why use it
 
@@ -92,7 +92,7 @@ Copy-Item -Recurse -Force .\oratores\skills\* "$HOME\.claude\skills\"
 Copy-Item -Force .\oratores\agents\*.md "$HOME\.claude\agents\"
 ```
 
-Copy **all five** skills, not only `oratores`: the four fork skills link into `../oratores/references/` and need it as a sibling directory.
+Copy **all six** skill directories, not only `oratores`: the five fork skills link into `../oratores/references/` and need it as a sibling directory.
 
 To install project-scoped instead of globally, copy into `<your-project>/.claude/skills/` and `<your-project>/.claude/agents/`. The skills then load only when the agent runs from inside that project.
 
@@ -193,7 +193,7 @@ python skills/oratores/scripts/validate_skill.py
 python skills/oratores/scripts/check_links.py
 ```
 
-The first checks layout, frontmatter, procedure-heading numbering, index coverage in both directions, module-map counts, the ten boundaries, fork-skill wiring, the critic's tool grant, and the agent roster — that every agent named in the ownership table exists, that no module is owned twice or left unowned, and that no specialist has lost the rule forbidding it to write prose. CI additionally validates every run artifact against the schema. The second checks that every relative link resolves. Both run on every push and pull request.
+The first checks layout, frontmatter, procedure-heading numbering, index coverage in both directions, module-map counts, the ten boundaries, fork-skill wiring, the critic's tool grant, and the agent roster — that every agent named in the ownership table exists, that no module is owned twice or left unowned, and that no specialist has lost the rule forbidding it to write prose. CI additionally validates any run artifact against the schema — which is a guard for a fork of this repo that commits its runs, since `run/` is git-ignored here and the step finds nothing to do on a clean clone. The second checks that every relative link resolves. Both run on every push and pull request.
 
 ## License
 

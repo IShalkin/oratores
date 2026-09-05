@@ -14,7 +14,7 @@
 
 ## Before adding a module
 
-1. Would the procedures fit in an existing module? Twenty modules is already at the edge of what a router can select from.
+1. Would the procedures fit in an existing module? Twenty-one modules is already past the edge of what a router can comfortably select from.
 2. Add it to: the Task Router in `SKILL.md`, the Context Loading Protocol if it is boundary-triggered, `procedure-index.md` (rows plus module map), and the Related sections of every module it interacts with.
 3. Pick a three-letter prefix that is not already used and is not confusable with one that is.
 

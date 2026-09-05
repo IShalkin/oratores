@@ -45,10 +45,10 @@ Required: `claims`. Each carries `id`, `text`, one `label` from the `LOG-04` typ
 
 Neither axis substitutes for the other: FACT with UNVERIFIED is a real state and the one worth catching before delivery, and softening the label to cover a source nobody could check is the defect the two fields exist to prevent. NOT_APPLICABLE is for the claim whose warrant is your own reasoning or intent — a projection has no source to check — and never for a fact nobody got round to checking, which is UNVERIFIED.
 
-`locator` is required for anything presented as a quotation, and the schema refuses CHECKED without one; without a locator the claim's source status is UNVERIFIED and it is not attributed. `comparator_chosen_before_direction` may be null, and null means not recorded, which is itself a finding. `gaps` needs an `id` and `needed`, plus why it matters and who could supply it — other files cite gaps by id, so a gap without one has to be quoted, and the quote breaks on the first edit. `unusable` records what you rejected and why, with an id of its own.
+`locator` is required for anything presented as a quotation, and the schema refuses CHECKED without one; without a locator the claim's source status is UNVERIFIED and it is not attributed. `comparator_chosen_before_direction` may be null, and null means not recorded, which is itself a finding. `verification_order` lists claim ids in the order somebody should go and check them, cheapest-and-most-load-bearing first — which is **not** `checked_first`, the order a hostile reader attacks in, which belongs to `objections.json`. The two lists genuinely diverge and one name across both hides that a verification owner and a Q&A rehearsal are working from different orders. `proof_order` records the `LOG-03` decision: which order, the attention condition that selected it, what leads, what is held for the close, and whether a necessary-but-weak argument was cut or sandwiched. `gaps` needs an `id` and `needed`, plus why it matters and who could supply it — other files cite gaps by id, so a gap without one has to be quoted, and the quote breaks on the first edit. `unusable` records what you rejected and why, with an id of its own.
 
 ```json
-{"claims": [{"id": "C3", "text": "Churn fell 18% after the pilot",
+{"claims": [{"id": "CLM-3", "text": "Churn fell 18% after the pilot",
              "label": "OBSERVATION", "source": "internal dashboard",
              "source_status": "UNVERIFIED",
              "source_status_reason": "no locator; the dashboard figure has not been checked",
@@ -60,7 +60,7 @@ Neither axis substitutes for the other: FACT with UNVERIFIED is a real state and
 Required: `objections`. Each needs `id`, `objection`, `charitable_reading` and `where`, and carries the rest of the `REF-01` set: `underlying_fear`, `response`, `limitation` and `next_action`. `limitation` is not optional in spirit — `REF-01` gates on every limitation appearing somewhere in the piece, so a response without one is claiming to be the whole truth. The charitable reading must be at least as strong as the one a real holder would make; a straw man here is a defect — `REF-01`, in [objection-and-refutation.md](objection-and-refutation.md). `is_it_correct` takes yes, partly or no, and `yes` is the cheapest information about the real obstacle. `where` is "in the piece", "in Q&A" or "passed over in silence" — answering everything signals fear, so silence is a decision and is recorded as one. `checked_first` lists, in order, the claim ids a hostile reader checks first. `mechanism_carrying` names the passage, the `MEC-01` mechanism doing the work, and its `stated_cost`; `dissent_position` records the `MEC-02` position taken and the one rejected, 1 to 5.
 
 ```json
-{"objections": [{"id": "O1", "objection": "We tried this in 2023",
+{"objections": [{"id": "OBJ-1", "objection": "We tried this in 2023",
                  "charitable_reading": "2023 failed on staffing, not on the idea",
                  "is_it_correct": "partly", "where": "in the piece"}]}
 ```
@@ -80,7 +80,7 @@ Deliberately unfiltered. Quantity is the point: the strong option usually appear
 Shared, and the point of the contract. Under `open`, each entry needs `id`, `question` and at least two `options`; add `procedure` and `raised_by`. An option needs `label`, `effect`, `cost` and `sourced`, and takes `condition` — when this option is the right one. `cost` and `sourced` are required precisely so that an unpriced trade-off cannot be produced by silence: write `"unpriced"` and `false` deliberately. `recommended` may be null. `decided` holds resolved entries: `id` and `chose` required, plus `rejected`, `by` (author, default or agent), `at` and `note`.
 
 ```json
-{"open": [{"id": "CH2", "question": "Open on the failure or on the number?",
+{"open": [{"id": "CH-E2", "question": "Open on the failure or on the number?",
            "options": [{"label": "failure", "effect": "buys credibility early",
                         "cost": "unpriced", "sourced": false}],
            "conflict": {"between": ["oratores-strategist", "oratores-adversary"],
@@ -89,10 +89,10 @@ Shared, and the point of the contract. Under `open`, each entry needs `id`, `que
 
 ## assumptions.json
 
-Shared. Each entry under `assumptions` needs `id`, `input`, `assumed` and `because`, and should carry `changes_what` — what in the deliverable moves if this is wrong — and a `confidence` of safe, material or blocking. Leave `corrected_to` and `corrected_at` alone; the panel writes both, and no agent writes either. Under `blocking_gaps`, each entry needs an `id` — `BG1`, `BG2` — plus `input` and `specified_as`, and should carry `cannot_be_defaulted_because`. The id is required because other files cite these, and cited by ordinal position they silently move the moment anyone appends a gap: on the first live run three of four references in the brief ended up pointing at the wrong gap, so a blocker chased from the brief would have been reported to the wrong owner.
+Shared. Each entry under `assumptions` needs `id`, `input`, `assumed` and `because`, and should carry `changes_what` — what in the deliverable moves if this is wrong — and a `confidence` of safe, material or blocking. Leave `corrected_to` and `corrected_at` alone; the panel writes both, and no agent writes either. Under `blocking_gaps`, each entry needs an `id` — `BG-1`, `BG-2` — plus `input` and `specified_as`, and should carry `cannot_be_defaulted_because`. The id is required because other files cite these, and cited by ordinal position they silently move the moment anyone appends a gap: on the first live run three of four references in the brief ended up pointing at the wrong gap, so a blocker chased from the brief would have been reported to the wrong owner.
 
 ```json
-{"assumptions": [{"id": "A1", "input": "slot length", "assumed": "20 minutes",
+{"assumptions": [{"id": "AS-S1", "input": "slot length", "assumed": "20 minutes",
                   "because": "standard for this forum", "confidence": "material",
                   "changes_what": "the cut order and the Q&A budget"}]}
 ```
@@ -104,14 +104,14 @@ Written by the orchestrator, not by the critic — the critic's grant has no wri
 Worst first. Each finding needs `id`, a `verdict` of CONFIRMED or SUSPECTED, `claim`, and `failure` — concrete inputs or state, then the wrong output. Add `severity` — a rank, where 1 is the worst finding in the run — an `anchor` with file, line or slide and the quote, a `direction` — severe where the piece asserts more than it can carry and passes silently, lenient where it undersells and costs effect but not standing — and `smallest_fix`. Anything you cannot anchor is dropped, not softened. `coverage` says what was reviewed; `not_reviewed` names what was skipped, because a review that does not say what it skipped is not a review.
 
 ```json
-{"findings": [{"id": "F1", "verdict": "CONFIRMED", "severity": 1,
+{"findings": [{"id": "FND-1", "verdict": "CONFIRMED", "severity": 1,
                "claim": "Slide 6 states a forecast as a result",
                "failure": "Reader reads 18% as achieved; it is modelled",
                "direction": "severe"}],
  "not_reviewed": ["appendix"]}
 ```
 
-## The four rules that make these compose
+## The five rules that make these compose
 
 **Cite the id of every candidate you lift into `artifact.md`.** Without it there is no mechanical way to check that the draft used kept material rather than refused material, and a reviewer has to match text by hand. On the first live run that is exactly how the worst finding hid: a refused entailment came into the draft as an unattributed sentence, so nothing prompted anyone to open its note.
 

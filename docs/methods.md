@@ -29,7 +29,7 @@ The rule the agent follows: **if the request says write, write.** If the request
 
 The complexity of the response tracks the occasion, not the topic. A two-line toast loads no modules. A twenty-minute address to five hundred executives loads six and runs a boundary pass.
 
-The mechanism: `SKILL.md` is preloaded; the twenty `references/*.md` modules load on demand; `audience-and-intent.md` is mandatory for any Design, Draft or Rehearse task and does not count against the discovery budget; one further primary module; then the boundary pass, which is not budget-limited.
+The mechanism: `SKILL.md` is preloaded; the twenty-one `references/*.md` modules load on demand; `audience-and-intent.md` is mandatory for any Design, Draft or Rehearse task and does not count against the discovery budget; one further primary module; then the boundary pass, which is not budget-limited.
 
 The budget exists to stop a router from loading everything, which is the same failure as loading nothing — both produce generic output.
 
@@ -166,7 +166,7 @@ The pattern across all six: **every one is a place where two things that were se
 
 ## What the second review found, which is worse
 
-The revision that discharged those twenty-five findings was reviewed again by the same critic on a fresh context. It confirmed eleven fixes, called five partial, and found four claimed as discharged that were not. It also produced twenty new findings, and **four of them were caused by the fixes.**
+The revision that discharged those twenty-five findings was reviewed again by the same critic on a fresh context. It confirmed eleven fixes, called five partial, and found four claimed as discharged that were not — which accounts for twenty of the twenty-five; the remaining five were about the run's files and the contract rather than the draft, and had already been fixed in the package, so it checked those against the package instead. It also produced twenty new findings, and **four of them were caused by the fixes.**
 
 That is the part worth keeping. Not that a first draft has defects — that is ordinary. That **a fix, written by the party that caused the defect, with the finding in front of it, reliably introduces a new one nearby.**
 
@@ -180,6 +180,20 @@ Four examples, all mine:
 The pattern under all four is the pattern from the first run, one turn later: **two things separately correct, never checked against each other.** A fix is written against the finding, and the finding is a paragraph, not the whole run.
 
 What follows for the package is not a new rule to obey. It is why the critic holds no write tool, and why that is the one property here enforced by mechanism. A producer that could apply its own review would apply it the way these four were applied — locally, plausibly, and with a new defect in the neighbourhood — and would then report the debt discharged, in a table, in the file it wrote. That table is now the record, and the party that wrote it is the party being audited. Nothing in the package detects a false row in it. The second review is the only thing that did.
+
+## What a stranger found
+
+The package was published, and then read end to end by an agent that had not built any of it, with one instruction: find the places where a document describes a version that no longer exists. Fifteen findings. The three that mattered were all of one shape — **an instruction to do something the grant does not permit**, which is the same shape as the `memory:` defect above and was not noticed while writing any of them.
+
+**The orchestrator could not orchestrate.** `agents/oratores.md` describes a six-agent run in detail — dispatch the strategist, wait, then three in parallel, then the critic — and its tool grant held no dispatch tool at all. `TaskCreate` and `TaskUpdate` are task-list tools and read like the right thing at a glance. So the run directory, the file contract, the schema and the panel had no producer, and review debt — the one named safeguard against an unreviewed number — could never be discharged, because discharging it means invoking the critic.
+
+**A fork bound the audit to the one agent that cannot write, then told it to write four files.** `persuasion-audit` declares `agent: oratores-critic`, which is exactly right: an auditing fork should not be able to improve what it is judging. Then the orchestration block — added the same day, to all five forks uniformly — told it to create a run directory. The escape hatch was closed too, by that agent's own rule against using `Skill` to obtain a capability it was denied. The fix was to delete the block from that one fork and say why it has none.
+
+**And the critic was told to write to a memory directory in the same file that forbids the field which would create it**, thirty-five lines apart, because removing `memory:` did not remove the paragraph that depended on it.
+
+Two smaller ones worth naming because they are the same failure in a validator rather than in prose. The seven-question cap — the instruction that hung a live run this morning — was conditioned in the router and in the playbook and left unconditioned in `agents/oratores.md`, which is the file every fork binds to and the only one that reaches a real run. `check_fork_question_gate` scanned the five forks and never the six agents: **the gate was enforced on the files that carry no behaviour and absent from the file that does.** And `REF-01` had said *fill all seven fields* over a template listing eight for as long as the module has existed, while the schema captured a third set of seven — so an adversary following the procedure faithfully wrote two fields the schema rejects.
+
+The uncomfortable part is not the count. It is that a validator with fourteen checks, three self-tests, two full audits and a green CI reported this package as intact while an agent could not perform its central described action. **Every check in it was true, and none of them was about that.**
 
 ## The second filter, and why there is not one
 

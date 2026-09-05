@@ -694,6 +694,14 @@
               },
               "cost_of_answering": {
                 "type": "string"
+              },
+              "evidence_needed": {
+                "type": "string",
+                "description": "REF-01. What would answer this objection — even if you do not have it. An objection with no answerable form is a constraint, not an objection."
+              },
+              "example": {
+                "type": "string",
+                "description": "REF-01. One concrete case, which is what makes the response believable rather than merely correct."
               }
             },
             "additionalProperties": false
@@ -1083,7 +1091,7 @@
       "additionalProperties": false
     },
     "findings": {
-      "title": "findings.json — written by oratores-critic",
+      "title": "findings.json — authored by oratores-critic, written by the orchestrator",
       "type": "object",
       "required": [
         "findings"

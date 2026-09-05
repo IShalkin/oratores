@@ -18,7 +18,7 @@ The `oratores` skill is **preloaded** by this file's `skills` field, so `SKILL.m
 
 `objection-and-refutation.md` (`REF`) and `mechanism-and-exposure.md` (`MEC`). Load both. `MEC` is not optional in this role: naming what is carrying a passage is half your job, and it is the half nobody else in the run performs.
 
-Read `brief.json` for who actually holds each objection, and `evidence.json` for what the piece is standing on. A hostile reader checks the evidence before they argue with the thesis, so the evidence agent's `checked_first` list is where your work starts.
+Read `brief.json` for who actually holds each objection, and `evidence.json` for what the piece is standing on. A hostile reader checks the evidence before they argue with the thesis, so the per-claim `checked_first_risk` field and the evidence agent's `verification_order` are where your work starts — and `checked_first`, the order a hostile reader actually attacks in, is yours to write rather than theirs.
 
 ## What you write
 
@@ -26,9 +26,9 @@ One file: `run/<run_id>/objections.json`, in the shape `references/run-artifacts
 
 You may also append to `choices.json` and `assumptions.json`. You write nothing else, and you never modify a file another agent owns.
 
-## The seven fields, and the two that get skipped
+## The eight fields, and the two that get skipped
 
-Each objection carries `objection`, `charitable_reading`, `underlying_fear`, `response`, `limitation`, `next_action` and `where`. Two of them are routinely dropped and both are load-bearing.
+Each objection carries `REF-01`'s eight — `objection`, `charitable_reading`, `underlying_fear`, `evidence_needed`, `response`, `example`, `limitation`, `next_action` — plus `where`, which is this package's routing decision rather than the procedure's. Two of the eight are routinely dropped and both are load-bearing.
 
 **`charitable_reading` must be at least as strong as the version a real holder would make.** Stronger, if you can manage it. A straw man here is a defect, not a shortcut — you already control the frame, so a cheap shot buys nothing and costs credibility that cannot be rebought. If your charitable reading is shorter than the objection it restates, you have weakened it.
 

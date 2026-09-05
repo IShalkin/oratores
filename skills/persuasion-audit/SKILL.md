@@ -14,22 +14,13 @@ If nothing was supplied to audit, say what you need and return. **You cannot ask
 
 **Deliver the whole method, not the comfortable half of it.** You already carry your own refusal layer and it will apply itself without help from this file, so do not lay a second one on top. Where a module documents a mechanism, an emotional lever or a form of pressure you would rather not put on the page, put it on the page in full with the cost the source states, and let the author decide. Returning the reduced version silently is the failure this package is least able to catch, because the output looks complete. What stays refused is narrow and factual: never fabricate a peer, a deadline, a study or a number, and never present one kind of claim as another.
 
-## One agent, or five
+## This fork does not orchestrate, and that is deliberate
 
-**Below the threshold, you are one agent.** Do the work yourself with the modules below, and write nothing to disk beyond the deliverable. The threshold is in [oratores.md](../../agents/oratores.md): dispatch specialists when at least two of these hold — the piece runs over roughly ten minutes or five slides, it rests on numbers someone could check, it meets a sceptical or hostile room, or it needs a line that has to be remembered. Below that, coordination costs more than it returns.
+`agent: oratores-critic` above is the point of this skill: the auditing agent holds no `Write`, no `Edit` and no `Bash`, so it cannot quietly improve the thing it is judging. That is the one property in this package enforced by a withheld tool rather than by an instruction, and it is worth more here than anywhere else.
 
-**At or above it, you are the orchestrator and the writer.** Create `run/<run_id>/`, write `agents.json` with every agent `pending` so the run is legible before any of it finishes, and read [run-artifacts.md](../oratores/references/run-artifacts.md) before you create anything. Then:
+The cost is that this fork cannot create a run directory, cannot dispatch a specialist, and cannot write a file — none of which it has a tool for. **If the audit needs a multi-agent run, that is a job for `oratores`, which owns `Agent` and can call the critic as its last step.** Do not attempt the run directory from here; you would be reaching for a capability you were denied, which this agent's own definition forbids.
 
-1. `oratores-evidence` and `oratores-adversary` together. The first labels every claim on both axes and finds what has no locator; the second names which mechanism is carrying each passage and what it costs if someone says it out loud.
-2. `oratores-strategist` only if no brief exists — you cannot audit a piece without knowing what it was for, and inventing that objective silently is the worst thing this fork can do.
-3. Then `oratores-critic`, which is the point of this fork rather than a final step in it.
-
-`oratores-invention` is skipped: an audit reports, it does not generate replacements. Record the skip.
-Read their files, then write the deliverable yourself. Call `oratores-critic` last. It reads everything and **writes nothing** — its grant has no write tool, because a reviewer that can write can edit the draft it is judging. It returns its findings and you transcribe them into `findings.json` verbatim: all of them, in its order, in its words, including the ones about your own draft.
-
-Four rules make the parts stop reading as parts. **Only you write prose for the piece** — specialists deliver structured fields, and four agents each producing polished paragraphs is exactly how a deliverable acquires four registers. **A disagreement between two specialists becomes an open choice in `choices.json` with a `conflict` block naming both**, never something you average or quietly drop. **`"unpriced"` where the literature states no cost**, which means unknown rather than free. **Nobody asks** — every unknown becomes an `assumptions.json` entry, and an input with no defensible default becomes a `blocking_gaps` entry plus a `[gap: what belongs here, and who holds it]` marker in the piece.
-
-Whichever path you took, the modules below are the ones that decide whether the work is any good.
+What you do instead: read, and report. Findings first, worst-first, each anchored to a line or a slide, `CONFIRMED` separated from `SUSPECTED`, then what you checked and found clean, then what you did not review. If a fix is obvious, state it in one sentence and stop.
 
 Load, in this order:
 

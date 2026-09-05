@@ -11,7 +11,7 @@ Stdlib only. If `jsonschema` happens to be installed it validates what the agent
 
 ## What it is for
 
-The package's central feature is offering options with the trade-off each source states. As terminal prose that is a paragraph people skim. As two cards side by side with the cost under each, it is a decision. The same is true of the objection map (seven fields per objection), the claim ledger (seven labels, one per claim) and the critic's findings.
+The package's central feature is offering options with the trade-off each source states. As terminal prose that is a paragraph people skim. As two cards side by side with the cost under each, it is a decision. The same is true of the objection map (seven fields per objection), the claim ledger (six claim types on one axis, five source statuses on the other) and the critic's findings.
 
 The second thing it is for: a forked agent cannot ask you anything, because there is no return path — a question emitted mid-run ends the work instead of pausing it. So agents do not ask. They default, record what they assumed and why, and deliver. The **Assumptions** panel is where you find those and correct them.
 
@@ -30,7 +30,7 @@ run/<id>/
   candidates.json    oratores-invention
   choices.json       any agent writes; the author decides
   assumptions.json   any agent writes; the author corrects
-  findings.json      oratores-critic
+  findings.json      oratores-critic authors it; the orchestrator writes it
   artifact.md        the writer — the only agent that produces prose
 ```
 
@@ -44,7 +44,7 @@ Every file is optional. A run that skipped a specialist has no file for it and t
 
 The panel writes back exactly two things, both only when you click:
 
-- a decided choice, appended to `choices.json`
+- a decided choice, moved from `open` into `decided` in `choices.json`
 - a corrected assumption, written into `assumptions.json`
 
 Nothing else here writes to disk. It cannot edit the artifact, re-run an agent, or change a module.

@@ -8,7 +8,7 @@ Handling what the audience already thinks, what they will say, and what they wil
 
 **Trigger.** Boundary 1: the audience is skeptical, fatigued, hostile, or invested in the status quo. Build this before drafting, not after.
 
-**Procedure.** For every objection you can anticipate, fill all seven fields. An objection with fewer than seven filled has not been handled.
+**Procedure.** For every objection you can anticipate, fill all eight fields. An objection with fewer than eight filled has not been handled.
 
 ```
 objection:              (in their words, not yours)
@@ -31,7 +31,7 @@ Then:
 6. Where an objection is about something you genuinely cannot answer, say so, name what would answer it, and say who would have to produce that.
 
 **Gates.**
-- Every anticipated objection has all seven fields.
+- Every anticipated objection has all eight fields.
 - Each charitable reading is at least as strong as the real one.
 - Every limitation appears somewhere in the piece.
 - No objection is answered with contempt.
