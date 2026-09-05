@@ -195,6 +195,22 @@ Two smaller ones worth naming because they are the same failure in a validator r
 
 The uncomfortable part is not the count. It is that a validator with fourteen checks, three self-tests, two full audits and a green CI reported this package as intact while an agent could not perform its central described action. **Every check in it was true, and none of them was about that.**
 
+## The third revision, written by a different hand
+
+The revision that broke three things while fixing twenty was written by the same instance that wrote the draft. The third was dispatched to a fresh one, with all twenty findings and the explicit reason for choosing it: a fix written by the party that caused the defect had introduced a new one three times in four. It discharged fifteen, partly discharged two, and refused four — and then reported something neither review had found.
+
+**It counted the words.** Nothing in three revisions had been counted. Revision 2's header claimed ten minutes of drafted material; the fresh writer measured 747 spoken words, which at a stated 130 a minute is five minutes forty-five. The claim overstated the text by roughly three quarters. And the critic's severest timing finding — *a draft that grew during editing, leaving three minutes for the close* — had been reasoned from that inflated figure, so the finding was true about the number and wrong about the draft.
+
+Three things about how it handled that are worth keeping.
+
+It recorded the **method** as an assumption: 130 words a minute, cited, so every duration on the page can be recomputed rather than trusted. It said which claim it would attack first if challenged — its own word count, because if the critic's ten minutes was right the revision is over the slot. And it stated plainly where it **contradicted** the review rather than quietly writing to the more comfortable number.
+
+It also refused to guess. Four of the twenty findings were not included in its dispatch, and rather than reconstructing them from their severity ranks it recorded the omission as a blocking assumption and left them undone. That is the correct answer and it is not the tempting one: reconstructing four plausible findings would have produced a fuller discharge table and four fixes aimed at guesses.
+
+And it caught the orchestrator. The second review's twenty findings existed in a dispatch prompt and **nowhere in the run directory** — the rule requiring the orchestrator to transcribe the critic verbatim had been written, published, and then not followed by the party who wrote it, for the review that found the most. They are transcribed now, forty-five findings in one file, with the id collision they introduced stated at the top rather than left for the next reader.
+
+Three revisions, two reviews, three writers. The measurable improvement is not that the draft got better — it did, and it still fails `REV-03`. It is that each pass found a different **class** of defect, and the classes track who was looking: the producer found none, the critic found the contradictions inside the text, the fresh writer found the arithmetic nobody had done, and an outsider reading only the published package found that an agent could not perform its central described action. **No single reviewer, however careful, was going to produce that list.**
+
 ## The second filter, and why there is not one
 
 A package like this has an obvious-looking safety move available: document the ugly mechanisms, then add a gate that refuses them. It costs one line per module and it reads as responsible.
