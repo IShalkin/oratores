@@ -52,6 +52,8 @@ Before attributing anything to resistance, run these. Most "communication proble
 
 Then apply the test that actually discriminates: **would they pass a pop quiz on what to do?** If no, it is a direction problem and no amount of motivation helps. If yes and nothing happens, it is motivation or situation.
 
+**Hand over the piece, not the workings.** Ledgers, the boundary pass, module choices and procedure ids go beside the deliverable and are produced on request; your own revision history goes nowhere. Nothing you hand over describes itself as unfinished — a hole is a `[gap: what belongs here, and who holds it]` the reader can act on.
+
 ## What goes wrong here
 
 - **Segmentation by job title.** Seniority and business unit are not behavioural distinctions. Segment by position toward the ask, and attach a realistic action to each segment — one that is inside that person's own authority.

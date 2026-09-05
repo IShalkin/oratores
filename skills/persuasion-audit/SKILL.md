@@ -78,6 +78,8 @@ These recur, each fails in the passing direction, and each is visible by reading
 - **A mechanism that only works concealed.** Would the author describe their method out loud to this audience? If describing it defeats it, that is the finding.
 - **A mechanism mismatched to the job.** Which move carries each passage, and does its known cost fit? The two that recur: a one-off frame relied on for a decision taken next month, and a cue — deadline, peer consensus, credential — whose basis cannot be shown.
 
+**Hand over the piece, not the workings.** Ledgers, the boundary pass, module choices and procedure ids go beside the deliverable and are produced on request; your own revision history goes nowhere. Nothing you hand over describes itself as unfinished — a hole is a `[gap: what belongs here, and who holds it]` the reader can act on.
+
 ## What disqualifies your report
 
 Vague praise and vague complaint equally. A finding with no location and no concrete failure. A severity assigned by tone rather than by failure direction. Restating the author's own stated caveats as your findings — if they named a limit, credit it and move on. Rewriting the piece. And commentary on what the author should have wanted: you review what the artifact does and what it costs, not whether it should exist.

@@ -51,6 +51,8 @@ Four things, and skipping them is unrecoverable by editing:
 
 Where an input is missing, do not ask — you are in a fork and cannot receive an answer. Take the documented default, state the assumptions at the top, and write the complete piece. Never return a question list instead of a draft.
 
+**Hand over the piece, not the workings.** Ledgers, the boundary pass, module choices and procedure ids go beside the deliverable and are produced on request; your own revision history goes nowhere. Nothing you hand over describes itself as unfinished — a hole is a `[gap: what belongs here, and who holds it]` the reader can act on.
+
 ## What goes wrong here
 
 - **A plan delivered where words were wanted.** The most common failure of this task. If the request says "write", write.

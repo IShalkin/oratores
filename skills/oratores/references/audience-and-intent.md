@@ -142,7 +142,7 @@ The recurring error this module exists to prevent: treating the *topic* as the b
 
    ```
    speaker:                    (and their standing with this audience)
-   occasion / date / venue:
+   occasion / date / venue:    (and the act it exists to perform — OCC-02)
    duration / slot position:
    language / register:
    primary audience:
@@ -160,18 +160,23 @@ The recurring error this module exists to prevent: treating the *topic* as the b
 
 2. Where a field is unknown and would change the work, **ask — at most seven questions, ranked by how much the answer changes the deliverable.** Do not ask what you could infer. **Ask only where an answer can reach you:** in a forked, background or otherwise non-interactive run there is no return path, so a question ends the work instead of pausing it. There, skip to step 3 for every unknown field.
 3. Where the user cannot or will not answer, choose the defensible default, write the assumption at the top of the deliverable, and produce the complete work anyway. Blocking the whole deliverable on a question is almost never correct; the exception is a factual claim you would have to invent.
-4. Interview the principal when writing for someone else, and interview them **adversarially** — argue the opposite case — to surface what they actually believe and, just as important, how they actually talk. See `ETH-04`.
-5. Screen the invitation itself before accepting: does this occasion advance the objective, strengthen a relationship that matters, or reach an audience worth reaching? If none, the right answer is to decline or renegotiate. See `OCC-01`.
+4. Only one kind of missing thing is a gap. Where filling the hole would mean **inventing a fact** — a figure, a date, a name, an event, a sentence someone is said to have spoken — the hole is the finding: mark it, name what belongs there and who holds it, and deliver everything that does not depend on it. `INV-05` is that procedure. Where the hole is missing only the author's own better material, it is not a gap, and leaving it is not caution: write the serviceable version now, mark that line as the one to upgrade, and hand over something that can be read aloud unchanged. The suggested introduction in `OCC-02` is the model: a complete text, marked as a suggestion, which is then usually used verbatim rather than treated as a slot to fill. A deliverable that cannot be used as given has not been delivered. The diagnostic sits inside your own draft: where a principle in it refuses to write something and a fallback two lines below writes it anyway, you could write it, so the hole was friction you added rather than a limit you found.
+5. Interview the principal when writing for someone else, and interview them **adversarially** — argue the opposite case — to surface what they actually believe and, just as important, how they actually talk. See `ETH-04`.
+6. Screen the invitation itself before accepting: does this occasion advance the objective, strengthen a relationship that matters, or reach an audience worth reaching? If none, the right answer is to decline or renegotiate. See `OCC-01`.
 
 **Gates.**
 - Every brief field is either filled or carries a stated assumption.
 - No more than seven questions were asked, and none was asked in a context that cannot answer.
 - A complete deliverable exists even where answers were refused.
+- Every hole left in the deliverable would require inventing a fact to fill; every other line is written, however plainly.
+- Nothing the deliverable declines to write on principle appears in it as a fallback.
 
 **Failure signals.**
 - A question list instead of a deliverable.
 - Assumptions made silently and discovered later by the speaker on stage.
 - A brief with no "what they have already heard" — the field that decides whether the opening can work at all.
+- A bracket in the one sentence the piece exists to deliver, with the work finished around it.
+- A stated principle justifying a blank, and the blank filled two lines later by the fallback.
 
 ---
 
@@ -182,6 +187,7 @@ The recurring error this module exists to prevent: treating the *topic* as the b
 | Key audiences addressed | 2–5; more only for a genuinely complex issue |
 | Segments written to | 1 primary, others not alienated |
 | Questions asked before drafting | ≤ 7 |
+| A hole left in a deliverable | only where filling it would invent a fact; otherwise the serviceable line, marked upgradeable |
 | Falloff to plan for | ~80% reached → ~40% accepting → ~15–20% acting |
 | Ask size | one step, reversible, inside their authority |
 | "Eliminate" as a target | never a legitimate direction; the best case is *minimize* |

@@ -40,16 +40,27 @@ You cannot argue the future from facts about the future — you have none. You a
    Do not make going first a condition of acceptance; it reads badly and it is rarely available.
 3. Where the occasion is fixed and unsuitable, change the **form** rather than forcing the content. A twenty-minute slot for material that needs an hour is not a shorter talk; it is a different artifact plus a document. See the form ladder in `SKILL.md`.
 4. Where you are one of several speakers, find out what the others are covering. Two speakers making the same point is a worse outcome than either of them not speaking.
+5. Scale the **decisions you hand back** to the occasion, the same way step 3 scales the artifact and the way preparation time scales directly with the stakes. Options are not free: more of them, even good ones, freeze the chooser and push them back toward the default — and the default here is whatever they would have said without you. `CHG-02` holds the cost. So the shape is one recommendation carrying its reason, plus options where options genuinely exist, and never a menu assembled to look thorough. Take the position: a recommendation the author overrules still starts the argument that settles the piece, where a set of open choices leaves them a blank slate to react to. An alternative earns its place on one of two grounds — the author already holds it, and leaving it out would read as a dodge; or the two versions genuinely produce different results and the difference is documented. Never raise an alternative in order to knock it down: the reason to use this construction is that it works, not that the other two are worse. Three things then govern the count:
+
+   | Hand the choice back | Make the call, and say what you decided |
+   |---|---|
+   | High stakes — on the record, quoted, or expensive to get wrong | short, unrecorded, delivered once |
+   | The choice cannot be reversed once the piece is delivered | either version survives being wrong, or the next occasion corrects it |
+   | The author writes or speaks for a living, or will rehearse the alternatives aloud | the author has three minutes and a glass in their hand on Friday |
+
+   Where the occasion is small, decide, and give the reason in one line — a decision the author can see is one they can overrule, which a blank is not. One option arriving with the edit that makes it work is worth more than five arriving without one.
 
 **Gates.**
 - The invitation is screened against the objective, not against availability.
 - Slot position is known and its cost accepted.
 - A mismatch between material and time is resolved before drafting, not during.
+- The open decisions in the deliverable are proportional to the occasion, and none of them has to be settled before the piece can be used.
 
 **Failure signals.**
 - Accepting because it was asked.
 - Discovering the running order on the day.
 - The same content delivered at a length it was not designed for.
+- A one-minute ceremonial piece returned with five open decisions, one of them mandatory.
 
 ---
 
@@ -75,25 +86,44 @@ You cannot argue the future from facts about the future — you have none. You a
 5. Where the narrative is obscure, fix it before anything else. Obscurity in the account of what happened spreads darkness over everything after it, and it gets only one chance.
 6. Handle the standing genres with their own shapes:
    - **Introduction of a speaker**: why they are here, what qualifies them, and one story that reveals character. Two or three minutes, organized around the story rather than the biography. Never "needs no introduction"; never a read biography. Supply your own when you are being introduced — offered as a suggestion, it is usually used verbatim.
-   - **Ceremonial** (retirement, award, dedication, eulogy): one revealing memory → what it shows → what the rest of us should do now. Brief, and not read.
+   - **Ceremonial** (retirement, award, dedication, eulogy): one revealing memory → what it shows → what the rest of us should do now. Brief, and not read. A tribute is not written in isolation — ask the honoured person, where they are present, what they want said and what avoided, and ask whoever else is speaking what they are covering. Where you can consult nobody, the documented fallback is three questions: what should we admire about them, which accomplishments belong in it, and what larger lesson the work teaches. Where you hold no memory of your own, the substitute is the year — who else was born in it, what was playing, what the place looked like then — and the sources are explicit that this is a substitute for the personal vignette rather than a blank left for the speaker to fill.
+   - **Award**: presenting and accepting are different pieces. Presenting carries a story that shows the recipient's character, the award's own history and why it exists, the achievement and what it means beyond itself, and what other people say about them; generic praise with no concrete instance is the characteristic failure of the form. Accepting runs four or five beats — the award's purpose, the others working in the same cause, the thanks, a pledge to carry the work on, and one concrete anecdote.
    - **Report at a meeting**: state the general position → break it down → restate the take-away. Not a list of items. Where you have no assigned slot, prepare the problem in a sentence and two or three recommendations, then speak when the discussion has exhausted itself rather than first.
    - **Apology**: accept responsibility, act fast, be plain, and pair it with the corrective action and restitution. Regret is not apology, and non-apologetic regret reliably fails and invites escalation.
    - **Crisis**: the first message goes out fast, one trained spokesperson, and silence is almost never the right answer. "No comment" reads as guilt plus incompetence.
    - **Bad news that is coming anyway**: tell it first, with the context, if you hold the evidence. The first telling becomes the normative one. The cost is that you enlarge the audience.
-7. Choose the **historical span** deliberately. "Historically" means whatever period supports the argument, and a longer span makes a trend look inevitable while a shorter one makes it look like a choice. Either can be honest; pick one and be able to defend the choice.
-8. Read the moment. Where an event overtakes the occasion, strip the partisan material and speak to what the room is actually experiencing. A prepared text delivered into a changed room is the most avoidable failure in this discipline.
+7. Name the **act the occasion exists to perform**, then find the sentence that performs it. No occasional address succeeds unless it fits the occasion exactly, and suitability rather than quality is the governing property of the class — so this is a separate question from whether the piece does its subject justice. It is also the one that fails silently: a tribute can honour the person completely, in good prose, and never mark the occasion, because everything on the page is good and none of it is the goodbye. On a small occasion it is one question and one sentence, not a pass over a table. Where the sources fix the obligation:
+
+   | Occasion | The act, which praise does not perform |
+   |---|---|
+   | Tribute to someone still present — a retirement, an anniversary, a last day | Console *and* congratulate, and above all supply the context: where this moment sits in a longer story. The sources separate this from a eulogy on exactly that ground — the honoured person is alive and usually in the room. |
+   | Eulogy | Not only mourn the loss but celebrate the life; give the loss a significance larger than the room; and advance the causes the life served. |
+   | Commencement | Celebrate, then challenge — and acknowledge the sadness of leaving while pointing at what is ahead. |
+   | Award, presenting | Establish worth specifically: this achievement, and what it means beyond itself. |
+   | Award, accepting | Recommit — pledge to carry the work on. |
+   | Apology | Admit the fault, in the speaker's own voice. An expression of regret has not performed it. |
+
+   Praise and congratulation are different acts and the sources keep them apart: praise addresses what someone is and takes what they did as its evidence, while congratulation addresses their situation and their fortune and is the wider of the two — congratulation contains praise, and praise does not contain congratulation. So a piece can honour a departing person completely and still never have wished them well.
+
+   No source states an obligation for a farewell as such; the genre is absent from both lists of occasional kinds the corpus supplies. Run a departure against the rows that are stated — the tribute, and the commencement's acknowledgement of the sadness of leaving — and for any occasion not listed, establish what the people present came to see done and write that. An absent row means unstated, not unobligated, and it is never a reason to invent one to make the list look complete.
+8. Choose the **historical span** deliberately. "Historically" means whatever period supports the argument, and a longer span makes a trend look inevitable while a shorter one makes it look like a choice. Either can be honest; pick one and be able to defend the choice.
+9. Read the moment. Where an event overtakes the occasion, strip the partisan material and speak to what the room is actually experiencing. A prepared text delivered into a changed room is the most avoidable failure in this discipline.
 
 **Gates.**
 - Register matched to the occasion.
 - Each arrangement part present carries a written reason; each part omitted is named as omitted.
 - Refutation present wherever the other side will be heard.
 - The historical span is a defensible choice.
+- For a ceremonial or occasional piece, the act the occasion exists to perform is named, and one sentence in the text performs it.
 
 **Failure signals.**
 - A keynote structure in a decision meeting.
 - An opening on an occasion where the subject was already known and the stakes obvious.
 - An account of what happened that the audience cannot follow.
 - The prepared text delivered unchanged into a room that has just heard something else.
+- A tribute to someone still in the room that praises them completely and never congratulates them.
+- Regret supplied where the occasion asked for apology.
+- A tribute written in isolation, duplicating the speaker before you.
 
 ---
 
@@ -148,6 +178,8 @@ You cannot argue the future from facts about the future — you have none. You a
 | Minimum arrangement | statement + proof |
 | Introduction of a speaker | 2–3 minutes, built around one story |
 | Ceremonial talk | brief, unread, three parts |
+| The occasion's own act | named before drafting; one identifiable sentence performs it |
+| Decisions handed back | proportional to the occasion; on a short ceremonial piece, at most one, already defaulted |
 | Crisis first message | fast; silence is almost never right |
 | "No comment" | never |
 | Slot position | 1 or 2; decline last |
@@ -159,4 +191,4 @@ You cannot argue the future from facts about the future — you have none. You a
 
 ## Related
 
-`AUD-05` screens the invitation as part of the brief. `INV-03` holds the topic scan that turns an opponent's recorded words back on the case. `MSG-04` selects the structure within the arrangement this module permits. `DLV-02` handles the slot. `REF-03` and `REF-04` handle the low-control arenas. `CMP-01` handles the case where the occasion is one of a series.
+`AUD-05` screens the invitation as part of the brief. `INV-03` holds the topic scan that turns an opponent's recorded words back on the case. `MSG-04` selects the structure within the arrangement this module permits. `DLV-02` handles the slot. `REF-03` and `REF-04` handle the low-control arenas. `CMP-01` handles the case where the occasion is one of a series. `OPN-03` places the sentence that performs the occasion's act, which usually falls in the last thirty seconds. `CHG-02` holds the documented cost of handing back more options.

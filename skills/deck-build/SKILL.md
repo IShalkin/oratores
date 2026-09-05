@@ -50,6 +50,8 @@ Structure → words → slides. Slides last, and never the reverse. A deck desig
 
 Storyboard on paper or sticky notes before opening any tool. A digital draft creates an attachment that resists the cuts you will need.
 
+**Hand over the piece, not the workings.** Ledgers, the boundary pass, module choices and procedure ids go beside the deliverable and are produced on request; your own revision history goes nowhere. Nothing you hand over describes itself as unfinished — a hole is a `[gap: what belongs here, and who holds it]` the reader can act on.
+
 ## What goes wrong here
 
 - **Titles that describe instead of asserting.** Read the titles alone, in order. If they read as a table of contents rather than as the argument, every one needs rewriting as a conclusion.

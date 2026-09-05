@@ -57,6 +57,8 @@ A real workflow, in this audience's own work, with a real friction and a real me
 
 If you do not have one, **say so as the finding**, deliver every section that does not depend on it, and specify the gap: what the workflow needs to be, who would know it, and what it would have to include.
 
+**Hand over the piece, not the workings.** Ledgers, the boundary pass, module choices and procedure ids go beside the deliverable and are produced on request; your own revision history goes nowhere. Nothing you hand over describes itself as unfinished — a hole is a `[gap: what belongs here, and who holds it]` the reader can act on.
+
 ## What to return
 
 The twenty sections. Plus, explicitly:

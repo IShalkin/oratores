@@ -539,6 +539,40 @@ def check_specialists_write_no_prose() -> None:
             errors.append(f"agents/{name}: missing the do-not-ask rule; a fork has no return path")
 
 
+def check_deliverable_separation() -> None:
+    """The producing agent and every fork must carry the separation rule.
+
+    The multi-agent path enforces this mechanically: a specialist writes no
+    prose and the reasoning lives in its own file. The single-agent path has no
+    such structure, so the rule exists only where it is written. A blind
+    comparison against an unaided baseline lost two tasks of four because the
+    ledgers, the boundary pass and the model's own revision history arrived
+    inside the deliverable.
+    """
+    marker = "Hand over the piece"
+    path = REPO / "agents" / "oratores.md"
+    if path.is_file() and marker not in read(path):
+        errors.append(
+            "agents/oratores.md: missing the deliverable/workings separation; "
+            "every fork binds to this file, so the rule does not reach a forked run without it"
+        )
+    for fork in FORK_SKILLS:
+        fp = SKILLS_ROOT / fork / "SKILL.md"
+        if fp.is_file() and marker not in read(fp):
+            errors.append(
+                f"{rel(fp)}: missing the deliverable/workings separation; a fork run "
+                "hands over its own ledgers and revision history without it"
+            )
+    skill = SKILL_DIR / "SKILL.md"
+    if skill.is_file():
+        text = read(skill)
+        if "Output Contract" in text and "goes nowhere" not in text:
+            errors.append(
+                "SKILL.md: the Output Contract does not say that the model's own "
+                "revision history belongs in the deliverable nowhere at all"
+            )
+
+
 def main() -> int:
     check_layout()
     check_frontmatter()
@@ -557,6 +591,7 @@ def main() -> int:
     check_agent_roster()
     check_module_ownership()
     check_specialists_write_no_prose()
+    check_deliverable_separation()
 
     for w in warnings:
         print(f"WARN  {w}")

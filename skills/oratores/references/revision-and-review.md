@@ -53,6 +53,8 @@ Set a numeric target — trim a tenth, then another — and go sentence by sente
 - Editing on screen only, never aloud.
 - A draft that grew during editing.
 - "I'll check that figure later."
+- A trace of an earlier draft left in the delivered piece — *an earlier version said*, *this is the one I under-priced*, *which I initially failed to label*.
+- The file of what you cut travelling with the deliverable, as a change log or a section on what the review found in your own draft.
 
 ---
 
@@ -138,11 +140,14 @@ Then, if the piece asks a leadership audience for adoption, run the five-questio
 
 **Output format.** Findings first, ranked worst-first, each anchored to a specific line, section or slide, each with: what is wrong in one sentence, the concrete failure it produces, and the smallest fix. Then what you checked and found clean, so the scope of the review is legible — an unstated scope reads as total coverage. Then a verdict, only if one was asked for.
 
+**The same hand producing and reviewing.** That format is a review handed to someone else. Where you wrote the piece and audited it yourself there is no second document unless you make one, so the same ordering has to decide what the deliverable looks like — and it decides that the findings stay out of it. The audit's product — the ledger, the exposure pass, the defects you found in your own earlier draft, the areas you cleared — is a working record, and it sits beside the piece for whoever asks. Folded in, the deliverable certifies itself, and `ETH-01` prices that move: a sentence asserting your own honesty or objectivity is evidence against it. A self-certifying deliverable also asks the reader to re-audit the work they commissioned you to do. What crosses over is only what changes what the reader does — a claim restated at the strength it can actually carry, a limit stated where it applies, a `[gap: …]` marker where something is genuinely missing. A finding you acted on is finished business, not a line in the artifact. And this gate produces a decision rather than a disclosure: a piece that fails it is fixed, or delivered with the failure named as a gap with an owner, and never handed over with a note that the pass is unfinished.
+
 **Gates.**
 - All six sections run.
 - Every finding anchored to a location.
 - Clean areas listed explicitly.
 - The five-question test run where it applies.
+- Nothing from the audit inside the delivered piece except what changes what the reader does.
 
 **Failure signals.**
 - "Looks good" or "feels weak" as a review.
@@ -191,6 +196,7 @@ Then, if the piece asks a leadership audience for adoption, run the five-questio
 | Cut target | 10% at a time, repeatedly |
 | Read aloud | every pass |
 | Memorable moments after edit | exactly 1 |
+| Revision history in the delivered piece | none; the cut file stays with you |
 | Findings format | worst-first, anchored, with the smallest fix |
 | Post-delivery review | same day |
 

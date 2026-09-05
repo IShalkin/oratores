@@ -12,7 +12,7 @@ This file is a routing index. It is never a user-facing artifact, and answering 
 | AUD-02 | Audience larger or more varied than one person | audience-and-intent.md | all audiences listed incl. secondary; behavioural segments with realistic action each; one primary segment chosen |
 | AUD-03 | The ask costs the audience something | audience-and-intent.md | resistance in three kinds with the dominant named; sacrifice stated in the piece; the value used as anchor |
 | AUD-04 | Audience differs in language, culture or register | audience-and-intent.md | jargon translated; every metaphor and reference checked; emotional latitude decided |
-| AUD-05 | Before drafting prose or slides | audience-and-intent.md | filled brief, every field or a stated assumption; ≤7 questions asked; complete deliverable regardless |
+| AUD-05 | Before drafting prose or slides | audience-and-intent.md | filled brief, every field or a stated assumption; ≤7 questions asked where an answer can reach you; a gap only where filling it would invent a fact, otherwise the serviceable line marked upgradeable; complete deliverable regardless |
 | MSG-01 | Before any content is generated | message-architecture.md | one sentence, point of view + stakes, passing the repeatability and disagreeability tests |
 | MSG-02 | Every piece; mandatory if the thesis sounds obvious | message-architecture.md | lead unburied; counter-intuitive element stated; any central metaphor tested on an unbriefed case |
 | MSG-03 | Any document, deck or argument to be followed | message-architecture.md | three pyramid rules pass on the outline; every grouping ordered and labelled; actions worded as end products |
@@ -80,8 +80,8 @@ This file is a routing index. It is never a user-facing artifact, and answering 
 | DLV-03 | Preparing the physical delivery | delivery-and-rehearsal.md | one element varied deliberately and mapped to meaning; pauses marked; one assigned gesture; pace decided |
 | DLV-04 | Any piece whose outcome matters | delivery-and-rehearsal.md | rehearsed aloud, timed, recorded; one correction per pass; ≥1 sceptical reviewer; contingencies rehearsed |
 | DLV-05 | The day before | delivery-and-rehearsal.md | the pre-delivery pack, complete |
-| OCC-01 | An invitation or slot arrives | occasion-and-genre.md | screened against the objective; slot cost accepted; time/material mismatch resolved before drafting |
-| OCC-02 | After acceptance, before drafting | occasion-and-genre.md | register matched; each arrangement part justified; refutation where the other side is heard; historical span defensible |
+| OCC-01 | An invitation or slot arrives | occasion-and-genre.md | screened against the objective; slot cost accepted; time/material mismatch resolved before drafting; open decisions proportional to the occasion and none blocking use |
+| OCC-02 | After acceptance, before drafting | occasion-and-genre.md | register matched; the occasion's own act named and one sentence performing it; each arrangement part justified; refutation where the other side is heard; historical span defensible |
 | OCC-03 | The piece is not a set-piece you control | occasion-and-genre.md | arena identified and preparation matched to control; reply grades pre-decided; colleagues aligned; debrief planned |
 | CMP-01 | Boundary 10 — repeated or multi-speaker message | campaign-and-cadence.md | one core message; reusable modules; order-of-magnitude volume assumption; inconsistencies named |
 | CMP-02 | Designing a programme rather than a piece | campaign-and-cadence.md | unbroken order; situation as a noun; performance separated from message; acceptance objective present; evaluation designed first |
