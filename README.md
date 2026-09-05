@@ -108,6 +108,27 @@ cp -R oratores/skills/. ~/.codex/skills/
 
 Restart the agent after installation if it does not refresh skills automatically.
 
+## Invoke it by name
+
+**This package does not trigger on its own, and no description fixes that.** Measured: the skill is installed and visible in the skill list, and a fresh session given the exact prompt *"i'm presenting a reorg to 80 people, two team leads lose their teams, should i name them in the room or privately first"* makes **zero tool calls** and answers directly. Prefix the same sentence with *"use the oratores skill"* and it fires immediately.
+
+Four candidate descriptions across four optimisation iterations moved recall from 0% to 0% — 128 samples, not one trigger, on positives and negatives alike.
+
+The cause is not a weak description. Claude consults a skill for work it cannot already do, and the tasks in scope here — structure this announcement, write this close, handle these objections — it does well unaided, which the [evals](evals/) confirm from the other direction: all four no-skill baselines were strong. A description cannot argue a model out of its own competence.
+
+So say the name:
+
+```
+/oratores              plan, design, review, rehearse — the router
+/speech-draft          the actual words
+/deck-build            slides, charts, the narration
+/audience-strategy     the brief, before anything is written
+/persuasion-audit      audit a draft, or read someone else's
+/exec-activation       commitments, owners, cascade
+```
+
+or just *"use oratores for this"*. What you get for it is in the evals: an independent critic that catches the numbers the writing agent invented and then certified as clean in its own notes.
+
 ## Usage
 
 Invoke it explicitly:

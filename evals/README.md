@@ -64,3 +64,15 @@ python assertions.py iteration-2     # a later iteration
 The workspace holds one directory per eval, each with `with_skill/outputs/` and `without_skill/outputs/`. The grader writes a `grading.json` beside each and prints a summary.
 
 The runs themselves are not in this repository. `run/` is git-ignored, and the eval workspace lives outside it — four prompts and their outputs are not evidence anyone else can check, whereas the prompts, the checks and the numbers are.
+
+## Triggering, measured separately
+
+`trigger-eval.json` — twenty queries, ten meant to fire and ten near-misses, run three times each against four candidate descriptions over four optimisation iterations.
+
+**128 samples, zero triggers.** Recall 0% → 0%. Precision reads 100% only because the skill never fires.
+
+The harness was checked before that was treated as a result: the skill is installed and appears in the available-skills list, a nested session works, and a fresh session given one of the positive prompts verbatim makes zero tool calls and answers directly — then fires immediately when the same sentence is prefixed with *use the oratores skill*.
+
+The cause is this file's other half read backwards. All four no-skill baselines were strong, and a model consults a skill for work it cannot already do. The description is not competing with a gap in capability; it is competing with the absence of one. A fifth description would not change it.
+
+**So the package is invoked by name.** The near-misses were worth writing anyway — the RFC query in particular ("three options with tradeoffs", an audience that will push back) is the package's own vocabulary in an engineering context, and it correctly did not fire.

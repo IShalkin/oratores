@@ -1,0 +1,82 @@
+[
+  {
+    "query": "ok so i've got the divisional town hall in three weeks, ~120 people, and we're announcing that the two client-facing teams are merging. nobody loses their job but one of the leads is basically getting their team taken away. i've done three of these announcements now and every single time everyone nods along and then absolutely nothing changes in how they work. what do i actually say",
+    "should_trigger": true
+  },
+  {
+    "query": "my board deck keeps coming back with 'so what?' written on slide 4. it's the Q3 review, 18 slides, mostly charts from the finance system. chair is an ex-CFO and reads everything before the meeting. i think the problem is structural not cosmetic but i can't see it",
+    "should_trigger": true
+  },
+  {
+    "query": "i have to give a 20 min keynote at our customer conference in Lisbon on the 14th, 400 people, and i've written 4200 words. i know that's too long but i can't tell what to cut without wrecking the argument. also i always run over. can you help me get it down and work out where i can drop things live if i'm behind",
+    "should_trigger": true
+  },
+  {
+    "query": "writing a eulogy for my uncle Tom, funeral is saturday. he was a difficult man, half the room genuinely loved him and half were hurt by him and everyone knows it. i don't want to lie about who he was but i also don't want to make it worse. maybe 4 minutes",
+    "should_trigger": true
+  },
+  {
+    "query": "our main competitor put out this pitch deck (attached as competitor-pitch-jan.pdf) and it's landing with prospects we thought were locked. i want to understand what's actually doing the work in it — not copy it, i want to know which claims they're making that we can't and which moves are just theatre",
+    "should_trigger": true
+  },
+  {
+    "query": "i'm presenting the churn analysis to the exec team on thursday. i've got the numbers (churn up 2.1pp QoQ, mostly in the SMB segment, cohort data in churn_q3.xlsx) but last time i showed a chart like this someone spent ten minutes arguing about the denominator and we never got to the recommendation. how do i set this up so that doesn't happen",
+    "should_trigger": true
+  },
+  {
+    "query": "i write speeches for our CEO. she's brilliant off the cuff and awful reading a script, and she keeps rewriting my drafts into something that sounds like a press release. i've got the AGM in five weeks. how do i write something she'll actually deliver as written",
+    "should_trigger": true
+  },
+  {
+    "query": "we ran an all-hands about the new engineering standards in june. everyone agreed it was a good idea. it is now september and precisely zero teams have adopted them. i'm doing a follow-up session and i do not want a repeat. what has to be different",
+    "should_trigger": true
+  },
+  {
+    "query": "need to tell about 30 partners on friday that the AI pilot programme is being cut. i was the one who championed it. the honest reason is that we never measured anything so we can't defend the spend, which makes me look like an idiot, but i think saying that is better than the alternatives. how do i handle it",
+    "should_trigger": true
+  },
+  {
+    "query": "sceptical hospital procurement committee, 45 min slot, six people around a table who have all been burned by a scheduling software rollout before. i know what they're going to throw at me. i want to get ahead of the objections rather than defend against them but i'm not sure which ones to raise myself and which to leave alone",
+    "should_trigger": true
+  },
+  {
+    "query": "can you clean up the formatting in this pptx? the fonts are inconsistent (some slides Calibri some Aptos), the logo is a different size on every slide, and slides 7-12 have the old brand colours. file is Q3-review-v6.pptx in my downloads",
+    "should_trigger": false
+  },
+  {
+    "query": "i need landing page copy for our new pricing tier. three benefit bullets, a headline, and a CTA button. tone should match the rest of the site which is pretty casual. product is a scheduling tool for dental practices",
+    "should_trigger": false
+  },
+  {
+    "query": "here's the zoom transcript from this morning's planning call (2100 lines, transcript-planning-0905.txt). can you pull out the decisions we actually made, who owns each one, and anything that got raised and dropped without a decision",
+    "should_trigger": false
+  },
+  {
+    "query": "write me a python script using python-pptx that takes a csv of regional numbers and generates one slide per region with a bar chart and a conclusion title. csv columns are region, revenue, target, headcount",
+    "should_trigger": false
+  },
+  {
+    "query": "i have to write Priya's mid-year review. she's technically strong but her design docs are unreadable and two people on the team have quietly stopped reviewing them. i need to say this in a way that lands without her going defensive. our template has three sections: impact, growth areas, goals",
+    "should_trigger": false
+  },
+  {
+    "query": "can you translate this speech into Russian? it's about 1800 words, quite formal, for a conference in Moscow next month. keep the register formal but it needs to sound like it was written in Russian not translated into it",
+    "should_trigger": false
+  },
+  {
+    "query": "our recharts bar chart renders with overlapping x-axis labels when there are more than 8 categories, and the tooltip shows the raw key instead of the formatted label. react 18, recharts 2.10. code's in src/components/RegionChart.tsx",
+    "should_trigger": false
+  },
+  {
+    "query": "drafting the RFC for moving our auth service off the shared postgres instance. i need to lay out three options with tradeoffs, the migration path, and the rollback plan. our RFC template wants a 'decision' section at the top. audience is the platform team plus two staff engineers who'll push back on anything that adds a service",
+    "should_trigger": false
+  },
+  {
+    "query": "need the standard wording for a data processing addendum to send to a new subprocessor. we're a UK controller, they're in the US, so it needs the IDTA and the usual sub-processing and audit clauses. i have last year's version but our DPO says the transfer bit is out of date",
+    "should_trigger": false
+  },
+  {
+    "query": "fix the grammar and tighten this email to a client. it's about a two week slip on the delivery date. i've written it three times and it either sounds defensive or too casual. about 200 words currently",
+    "should_trigger": false
+  }
+]

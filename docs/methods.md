@@ -227,6 +227,17 @@ Three probes came with the class, and they are cheap enough to be worth stating 
 
 And the thing that made this review worth more than the two before it: **it refused one of its own findings.** Its severest timing finding had been reasoned from the draft's own uncounted claim about its own length — an uncounted self-report used as a review input, on a page where nothing had ever been counted, which is the defect the finding was reporting. It said so in those terms, kept the half that was right, and accepted the writer's contradicting count after recounting it by hand. A reviewer that cannot do that produces a list that grows monotonically and never converges.
 
+## The package does not trigger, and that is not a description problem
+
+Twenty trigger queries, ten meant to fire and ten near-misses, run three times each against four candidate descriptions over four optimisation iterations. **128 samples, zero triggers.** Recall went from 0% to 0%; precision read 100% only because the skill never fired at all.
+
+Before treating that as a finding, the harness was checked, because 128 identical zeros looks the same whether the description is bad or the rig is broken. The skill is installed and listed among the available skills. A nested session works. And a fresh session given one of the positive prompts verbatim made **zero tool calls** and answered it directly — then fired immediately when the same sentence was prefixed with *use the oratores skill*.
+
+So the mechanism is intact and the selection does not happen. The reason is in the other eval, read backwards: **all four no-skill baselines were strong.** A model consults a skill for work it cannot already do, and *structure this announcement*, *write this close*, *handle these objections* is work it does well unaided. The description is not competing with a gap in capability; it is competing with the absence of one.
+
+That has a consequence worth stating plainly rather than optimising around. Everything this package measurably adds — the independent critic catching the quantities the writing agent invented and then certified as clean in its own notes — sits behind a door the model has no reason to open, because from outside the door the room looks like somewhere it has already been. Four descriptions could not argue it otherwise, and a fifth would not either. The package is invoked by name, and the README says so first rather than last.
+
+The general form is worth keeping for anything built this way: **a skill whose value is a mechanism rather than a capability will not be selected by a model reasoning about capability.** Triggering optimisation assumes the description is the binding constraint. Here it was not, and four iterations of it were spent finding that out.
 ## The second filter, and why there is not one
 
 A package like this has an obvious-looking safety move available: document the ugly mechanisms, then add a gate that refuses them. It costs one line per module and it reads as responsible.
