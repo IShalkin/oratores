@@ -148,6 +148,22 @@ A fifth, found by the first agent that had to *use* the run schema rather than r
 
 The same pass pulled a bare figure out of the schema — an ask delivered at "80-90%" — for the reason above, and closed an ordering defect worth recording because it was invisible from either end. `findings.severity` was `integer, minimum 1` with no direction stated; the panel sorted ascending; the agent writing the sample run numbered 5 as worst. Every piece was internally consistent, and together they listed the critic's findings in exactly the reverse of the intended order, under a heading reading *worst first*. An unstated convention is not a convention.
 
+## What executing it found that reading it had not
+
+The multi-agent layer was designed, contracted, schema'd, given a panel and a hand-written sample run — and then run for the first time on a real brief. Everything below was invisible until it ran, and none of it is about the advice.
+
+**Seven fields were invented by agents that the schema did not define, and nothing surfaced any of them.** `additionalProperties` was unset, so an invented field simply validated. Six turned out to carry real decisions — the proof-order record, the answer to `PTH-05`'s test, the occasion's timing budget — and are now defined, taking the agents' own names rather than better ones, because the run is evidence of what the work needs. The seventh duplicated a field belonging to another file, under the same name, with different semantics: `checked_first` in one file meant the order a hostile reader attacks in, and in the other the order somebody should go and check. One name across two meanings hid that a verification owner and a Q&A rehearsal were working from different lists. The schema now rejects any field it does not define, at every level.
+
+**Ids drifted, silently, in the direction that is hardest to notice.** Blocking gaps were cited by ordinal position; appending a gap shifted three of four references in the brief onto the wrong gap. A blocker chased from the brief would have been reported to the wrong owner. Separately, two files each minted `O1` — one for objections, one for opening candidates — and the draft cited both fourteen lines apart, so a cross-reference resolved to a real entry in the wrong file with nothing raised.
+
+**Three agents append to two shared files with no lock.** Sequential ids collide and the loser is overwritten rather than erroring. It did not bite only because one agent happened to re-read before writing and noticed. The rule now is an agent-letter prefix and a re-read immediately before the write, and the honest note beside it is that nothing enforces either.
+
+**The contract assigned a file to an agent that has no tool to write it.** The critic's grant withholds `Write`, `Edit` and `Bash` deliberately, and that is the one property here enforced by mechanism rather than instruction. The contract said it wrote `findings.json`. The contract yielded: the critic authors, the orchestrator transcribes verbatim, and the manifest gained `authored` alongside `writes` so it no longer asserts a write that cannot happen. The weakness is stated where it can be read — the reviewed party holds the pen on the review, and nothing detects a softened finding.
+
+**And the writer contradicted itself nine lines apart.** The draft said *I cannot stand here and tell you the pilots failed* and then used a kept metaphor asserting exactly that. It survived the writer, who had every file in front of it. It was caught by the critic, whose whole value is having no stake in the draft — and it was invisible partly because the draft cited ids for four of the eleven candidates it used, so nothing prompted a reader to open the note that ruled that entailment out.
+
+The pattern across all six: **every one is a place where two things that were separately correct were never checked against each other.** That is what an execution finds and a reading does not, and it is why the sample run written by hand contained none of them.
+
 ## The second filter, and why there is not one
 
 A package like this has an obvious-looking safety move available: document the ugly mechanisms, then add a gate that refuses them. It costs one line per module and it reads as responsible.

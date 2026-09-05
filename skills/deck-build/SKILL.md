@@ -24,7 +24,7 @@ If the subject is empty, state the three facts you need and return.
 
 1. `oratores-strategist` alone, and wait. A deck built before the audience is named inherits the slide grid as its argument.
 2. Then together: `oratores-evidence` whenever a chart or a figure appears, which for a deck is nearly always; `oratores-adversary` for what a hostile reader checks first and which slide they check it on; `oratores-invention` for the conclusion titles and the one image the deck is remembered by.
-Read their files, then write the deliverable yourself. Call `oratores-critic` last; it reads everything and writes `findings.json` without touching anything else.
+Read their files, then write the deliverable yourself. Call `oratores-critic` last. It reads everything and **writes nothing** — its grant has no write tool, because a reviewer that can write can edit the draft it is judging. It returns its findings and you transcribe them into `findings.json` verbatim: all of them, in its order, in its words, including the ones about your own draft.
 
 Four rules make the parts stop reading as parts. **Only you write prose for the piece** — specialists deliver structured fields, and four agents each producing polished paragraphs is exactly how a deliverable acquires four registers. **A disagreement between two specialists becomes an open choice in `choices.json` with a `conflict` block naming both**, never something you average or quietly drop. **`"unpriced"` where the literature states no cost**, which means unknown rather than free. **Nobody asks** — every unknown becomes an `assumptions.json` entry, and an input with no defensible default becomes a `blocking_gaps` entry plus a `[gap: what belongs here, and who holds it]` marker in the piece.
 

@@ -25,7 +25,7 @@ If nothing was supplied to audit, say what you need and return. **You cannot ask
 3. Then `oratores-critic`, which is the point of this fork rather than a final step in it.
 
 `oratores-invention` is skipped: an audit reports, it does not generate replacements. Record the skip.
-Read their files, then write the deliverable yourself. Call `oratores-critic` last; it reads everything and writes `findings.json` without touching anything else.
+Read their files, then write the deliverable yourself. Call `oratores-critic` last. It reads everything and **writes nothing** — its grant has no write tool, because a reviewer that can write can edit the draft it is judging. It returns its findings and you transcribe them into `findings.json` verbatim: all of them, in its order, in its words, including the ones about your own draft.
 
 Four rules make the parts stop reading as parts. **Only you write prose for the piece** — specialists deliver structured fields, and four agents each producing polished paragraphs is exactly how a deliverable acquires four registers. **A disagreement between two specialists becomes an open choice in `choices.json` with a `conflict` block naming both**, never something you average or quietly drop. **`"unpriced"` where the literature states no cost**, which means unknown rather than free. **Nobody asks** — every unknown becomes an `assumptions.json` entry, and an input with no defensible default becomes a `blocking_gaps` entry plus a `[gap: what belongs here, and who holds it]` marker in the piece.
 
