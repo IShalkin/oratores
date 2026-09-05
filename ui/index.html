@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>oratores — run panel</title>
+<link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48 64x64">
+<link rel="icon" type="image/png" sizes="64x64" href="/icon-small.png?v=3">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body data-detail="off">
+<div class="shell">
+
+  <aside class="rail">
+    <div class="brand">
+      <div class="lockup">
+        <img class="mark" src="/icon.png" alt="" width="34" height="38">
+        <div class="word">Oratores</div>
+      </div>
+      <div class="rule"></div>
+      <div class="sub">run panel</div>
+    </div>
+
+    <div class="runs">
+      <select id="run-select" aria-label="Run"></select>
+    </div>
+
+    <nav id="nav" aria-label="Sections"></nav>
+
+    <div class="rail-foot">
+      <div class="status-line">
+        <span class="dot" id="live-dot"></span><span id="live-text">connecting</span>
+      </div>
+      <div class="tech" id="agents"></div>
+      <div class="tech" id="schema-note"></div>
+      <div class="foot-buttons">
+        <button id="detail-toggle" type="button" aria-pressed="false">Show detail</button>
+        <button id="theme-toggle" type="button">Light</button>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="wrap">
+
+      <div class="head">
+        <h2 id="run-title">—</h2>
+        <div class="state" id="run-state"></div>
+        <details class="task-fold" id="task-fold">
+          <summary>The request</summary>
+          <div class="task" id="run-task"></div>
+        </details>
+      </div>
+
+      <div class="problems tech" id="problems" hidden>
+        <h4>The agents wrote something the schema rejects</h4>
+        <ul id="problems-list"></ul>
+      </div>
+
+      <section id="s-choices">
+        <h3 class="sec">Decisions</h3>
+        <p class="sec-note">Nobody but you can settle these.</p>
+        <div id="choices-open"></div>
+        <div class="card" id="choices-decided-card" hidden>
+          <h4>Already decided</h4>
+          <div id="choices-decided"></div>
+        </div>
+      </section>
+
+      <section id="s-assumptions">
+        <h3 class="sec">Assumptions</h3>
+        <p class="sec-note">Taken because nothing could be asked mid-run. Correct anything wrong.</p>
+        <div id="assumptions"></div>
+        <div class="card" id="gaps-card" hidden>
+          <h4>Left as gaps</h4>
+          <p class="sec-note" style="margin-bottom:12px">No defensible default existed, so nothing was invented here.</p>
+          <div id="gaps"></div>
+        </div>
+      </section>
+
+      <section id="s-findings">
+        <h3 class="sec">Problems</h3>
+        <p class="sec-note">Worst first. <em>severe</em> means it passes silently if nobody catches it.</p>
+        <div id="findings"></div>
+        <div class="card" id="notreviewed-card" hidden>
+          <h4>What the review covered</h4>
+          <div id="coverage"></div>
+          <div id="notreviewed"></div>
+        </div>
+      </section>
+
+      <section id="s-artifact">
+        <h3 class="sec">Draft</h3>
+        <div class="card"><div class="md" id="artifact"></div></div>
+      </section>
+
+      <section id="s-brief">
+        <h3 class="sec">Brief</h3>
+        <p class="sec-note">Who this is for, what has to change, and what you are asking of them.</p>
+        <div id="brief"></div>
+      </section>
+
+      <section id="s-evidence">
+        <h3 class="sec">Evidence</h3>
+        <p class="sec-note">Two separate questions: what kind of claim it is, and whether anyone checked it.</p>
+        <div id="evidence"></div>
+      </section>
+
+      <section id="s-objections">
+        <h3 class="sec">Objections</h3>
+        <p class="sec-note">Put at full strength, not as straw men.</p>
+        <div id="objections"></div>
+      </section>
+
+      <section id="s-candidates">
+        <h3 class="sec">Candidates</h3>
+        <p class="sec-note">Everything generated, including what was thrown away.</p>
+        <div id="candidates"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

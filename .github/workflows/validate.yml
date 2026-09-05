@@ -1,0 +1,58 @@
+name: Validate skill
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Structural validation
+        run: python skills/oratores/scripts/validate_skill.py
+      - name: Relative link check
+        run: python skills/oratores/scripts/check_links.py
+      - name: Run-artifact schema check
+        run: |
+          python -m pip install --quiet jsonschema
+          python - <<'PY'
+          import glob, json, sys
+          from pathlib import Path
+
+          import jsonschema
+
+          root = Path("skills/oratores/schema/run-artifacts.schema.json")
+          schema = json.loads(root.read_text(encoding="utf-8"))
+          artifacts = schema.get("properties", {})
+
+          files = sorted(glob.glob("run/*/*.json"))
+          if not files:
+              print("no run artifacts under run/*/ — nothing to validate")
+              sys.exit(0)
+
+          failed = 0
+          for path in files:
+              name = Path(path).name
+              entry = artifacts.get(name)
+              if not entry or "$ref" not in entry:
+                  failed += 1
+                  print(f"FAIL  {path} — the schema defines no artifact named {name}; rename it or add it to the schema")
+                  continue
+              sub = {"$defs": schema["$defs"], "$ref": entry["$ref"]}
+              validator = jsonschema.Draft202012Validator(sub)
+              instance = json.loads(Path(path).read_text(encoding="utf-8"))
+              errors = sorted(validator.iter_errors(instance), key=lambda e: list(e.absolute_path))
+              if errors:
+                  failed += 1
+                  for err in errors:
+                      where = "/".join(str(p) for p in err.absolute_path) or "<root>"
+                      print(f"FAIL  {path}: {where}: {err.message}")
+              else:
+                  print(f"OK    {path} against {entry['$ref']}")
+
+          sys.exit(1 if failed else 0)
+          PY

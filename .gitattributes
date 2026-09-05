@@ -1,0 +1,5 @@
+# The repo stores LF. Working copies get whatever the platform wants.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
