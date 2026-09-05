@@ -1121,7 +1121,7 @@
               "severity": {
                 "type": "integer",
                 "minimum": 1,
-                "description": "A rank, not a scale: 1 is the worst finding in this run, 2 the next. The panel sorts ascending."
+                "description": "A cross-review rank, 1 = worst overall. Only set this where somebody has actually compared findings across reviews on merit; merging two review orderings by concatenation re-ranks them, which this contract calls a defect and the hardest kind to notice. Where no such comparison was made, leave it out and use severity_in_review."
               },
               "anchor": {
                 "type": "object",
@@ -1163,6 +1163,15 @@
               },
               "smallest_fix": {
                 "type": "string"
+              },
+              "review": {
+                "type": "string",
+                "description": "Which review produced this finding. Two reviews cannot both satisfy a single 1-is-worst rank, so the rank is scoped to its review and this field says which."
+              },
+              "severity_in_review": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Rank within this finding's own review, 1 = worst. Use this for triage. The top-level severity is a cross-review rank and is only meaningful if somebody deliberately merged the orderings."
               }
             },
             "additionalProperties": false

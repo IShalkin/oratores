@@ -211,6 +211,22 @@ And it caught the orchestrator. The second review's twenty findings existed in a
 
 Three revisions, two reviews, three writers. The measurable improvement is not that the draft got better — it did, and it still fails `REV-03`. It is that each pass found a different **class** of defect, and the classes track who was looking: the producer found none, the critic found the contradictions inside the text, the fresh writer found the arithmetic nobody had done, and an outsider reading only the published package found that an agent could not perform its central described action. **No single reviewer, however careful, was going to produce that list.**
 
+## A fix applied to the record rather than to the referent
+
+The third review named a class, and named it because it has nowhere to keep one: the critic holds no write tool, so a recurring shape travels in its report or not at all. The shape is **a fix applied to the record rather than to the thing the record points at, or applied mechanically across a namespace it does not own.** Four instances in one run, and the severest of them was the orchestrator's.
+
+Transcribing the second review meant prefixing forty-five finding ids with `FND-`. To keep the draft's citations resolving, a regex rewrote every bare `F<n>` and `G<n>` in `artifact.md`. Two things were wrong with that. It edited a file the orchestrator does not own — the writer does — and it did not distinguish namespaces, so **the draft's evidence-gap citations became finding citations.** The consequence was precise: the pre-delivery checklist named four cheap verifications, and after the rewrite all four resolved to findings that were already discharged. Anyone following it in good faith would have concluded the checks were done and delivered the piece with its load-bearing claim unverified. The critic ranked it first and wrote the check for its own cause into the finding: *ask the orchestrator whether the prefix was applied by a global replace.* It was.
+
+The other three are the same shape at different scales. A metaphor cited in the draft for a sentence that is no longer that metaphor, while the candidate file still records the original as kept — so a reader tracing the citation confirms the presence of the thing that was removed. A sentence correcting a previous miscount, itself miscounted, because the count was re-derived before the writer's own appends rather than after. And a merge of two independently-ranked reviews into one file, which re-ranked them on merit and put five lenient findings above the severest — the operation the contract names as a defect, forced by the contract's own insistence that severity be a single rank.
+
+Three probes came with the class, and they are cheap enough to be worth stating as procedure rather than as advice:
+
+- After any id, prefix or rename fix, **re-resolve a sample of citations against the target file.** Reading the fix confirms the fix; only resolving confirms the reference.
+- **Re-derive any self-reported count in the same sentence that corrects a previous count**, after your own additions. A corrected count is the single most likely number in a document to be wrong, because attention went to the correction.
+- Where a review prescribes wording, **re-check the prescribed wording for the defect class it was fixing.** The critic's own first-review fix substituted one unverified universal negative for another and took two revisions and the writer's footnote to surface.
+
+And the thing that made this review worth more than the two before it: **it refused one of its own findings.** Its severest timing finding had been reasoned from the draft's own uncounted claim about its own length — an uncounted self-report used as a review input, on a page where nothing had ever been counted, which is the defect the finding was reporting. It said so in those terms, kept the half that was right, and accepted the writer's contradicting count after recounting it by hand. A reviewer that cannot do that produces a list that grows monotonically and never converges.
+
 ## The second filter, and why there is not one
 
 A package like this has an obvious-looking safety move available: document the ugly mechanisms, then add a gate that refuses them. It costs one line per module and it reads as responsible.

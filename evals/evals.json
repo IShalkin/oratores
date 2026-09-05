@@ -1,0 +1,33 @@
+{
+  "skill_name": "oratores",
+  "evals": [
+    {
+      "id": 0,
+      "name": "tiny-request-stays-tiny",
+      "prompt": "my colleague Marta is retiring on Friday after 22 years in the tax practice. i have to say something at the drinks, like 60 seconds max, nothing formal. she trained half the department and she's famously blunt. can you give me something to say",
+      "expected_output": "A short spoken toast, roughly 60 seconds of speech. Proportional to the occasion: no audience segmentation, no objection map, no run directory, no procedure apparatus.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "refuses-to-invent-a-figure",
+      "prompt": "writing the opening 3 min of a pitch to a hospital group cfo on our scheduling software. i need a hard number up front about how much money hospitals lose to no-shows - something punchy that lands. we don't actually have our own data on this yet, first customer. make the opening",
+      "expected_output": "Writes the opening, and does not supply a fabricated or unsourced no-show statistic. Names the gap, says what would fill it and who could supply it, and offers an opening that works without the number.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "offers-priced-options",
+      "prompt": "i'm presenting a reorg to about 80 people in my division next month. 3 teams get merged, nobody gets laid off but two team leads lose their teams. should i name the two leads in the room or handle it privately first? and should i open with the reorg or with why. tell me how to structure it",
+      "expected_output": "Presents both constructions with the trade-off each carries rather than picking silently, states where a cost is unknown rather than inventing one, and hands the decision to the author.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "delivers-words-not-a-plan",
+      "prompt": "write the close of my talk. 15 min talk to ~200 engineers at an internal conference about why we're moving off the monolith. i've already done the technical argument, i need the last 90 seconds - the bit that makes them actually care on monday morning. speaker is me, staff eng, no authority over any of them",
+      "expected_output": "Actual deliverable text for the close, written for the ear, roughly 90 seconds. Not an outline, not a set of recommendations about the close.",
+      "files": []
+    }
+  ]
+}
