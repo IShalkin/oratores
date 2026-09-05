@@ -41,7 +41,21 @@ One note on its palette: the mark's bars are a more saturated cyan than the `#8B
 - **Flat SVG logo master** — still not delivered. A flat *raster* master arrived on 2026-09-05 and is in use; the vector the brandbook specifies has not, so the mark cannot be scaled freely and there is no single-colour or 16 px variant to hand-check as page 4 requires.
 - **An outline icon set** — not chosen.
 - **Self-hosted WOFF2** — the stack names DejaVu first, per p.9, and falls back to system faces. No licence check has been run, so nothing is bundled.
-- **Keyboard QA and a screen-reader pass** — the panel gives every control a name, a visible focus ring and a real tab order, but page 23's acceptance criteria have not been run against it.
+- **A screen-reader pass with a real screen reader** — not run. What follows was checked programmatically, which is not the same thing.
+
+## Page 23, run
+
+Checked against the acceptance criteria, and five failed:
+
+- **No skip link.** Added: a `.skip` anchor to `#content`, off-screen until focused.
+- **No `aria-live`.** Added: the one-line run state is `aria-live="polite"`, and a failed write now goes to a `role="alert"` region that does not auto-dismiss, instead of a native `alert()`. p.23 asks for polite on a result and alert only for a blocker; an unsaved input is a blocker.
+- **No `h1`.** The rail wordmark is now the `h1`. The artifact is a document inside a document, so its markdown headings are demoted one level — otherwise a run with a title produces a second `h1`.
+- **A 28 px target.** The request disclosure was below the 44 px floor. Now `min-height: var(--control-height)`.
+- **Reflow at 320 px was broken.** The page did not scroll sideways, which is what a naive check measures, but the 240 px rail left 120 px of main and the content overflowed inside it. There was no mobile layout at all. Below 768 px the rail is now a header: brand and run selector on one row, the section list as a scrolling row with its own area, options and key-value grids collapsed to one column, tables keeping their own scroll per p.19.
+
+Verified after the fix at 320 × 800: no sideways page scroll, no inner overflow, every focusable at least 44 px tall, every control named, one `h1`, one `aria-live`, one `role="alert"`.
+
+Still not done, and not claimable: keyboard-only operation by a person, an actual screen reader, and zoom to 200% on a real browser at a real size.
 
 ## The rule that does not move
 

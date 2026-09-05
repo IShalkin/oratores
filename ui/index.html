@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="/style.css">
 </head>
 <body data-detail="off">
+<a class="skip" href="#content">Skip to the run</a>
 <div class="shell">
 
   <aside class="rail">
     <div class="brand">
       <div class="lockup">
         <img class="mark" src="/icon.png" alt="" width="34" height="38">
-        <div class="word">Oratores</div>
+        <h1 class="word">Oratores</h1>
       </div>
       <div class="rule"></div>
       <div class="sub">run panel</div>
@@ -40,12 +41,14 @@
     </div>
   </aside>
 
-  <main>
+  <main id="content" tabindex="-1">
     <div class="wrap">
+
+      <div class="alert" id="alert" role="alert" hidden></div>
 
       <div class="head">
         <h2 id="run-title">—</h2>
-        <div class="state" id="run-state"></div>
+        <div class="state" id="run-state" aria-live="polite"></div>
         <details class="task-fold" id="task-fold">
           <summary>The request</summary>
           <div class="task" id="run-task"></div>

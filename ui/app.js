@@ -252,6 +252,18 @@ function show(key) {
   for (const [k, b] of navButtons) b.setAttribute("aria-current", String(k === key));
 }
 
+/* p.23: aria-live polite for a result, role=alert for a blocker. A failed
+   write is a blocker — your input was not saved — and it does not auto-dismiss. */
+function blocker(msg) {
+  const n = $("#alert");
+  n.textContent = msg;
+  n.hidden = false;
+}
+
+function clearBlocker() {
+  $("#alert").hidden = true;
+}
+
 function emptyInto(node, msg) {
   node.innerHTML = "";
   const n = el("div", "empty-note");
@@ -331,7 +343,9 @@ function renderChoices(c) {
         if (!r.ok) {
           btn.disabled = false;
           btn.textContent = "Choose";
-          alert(r.error || "Could not save that choice. Nothing was written; try again.");
+          blocker(r.error || "Could not save that choice. Nothing was written; the decision is still open.");
+        } else {
+          clearBlocker();
         }
       };
       box.appendChild(btn);
@@ -392,7 +406,8 @@ function renderAssumptions(a) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: x.id, corrected_to: inp.value.trim() }),
       }).then(v => v.json()).catch(e => ({ ok: false, error: String(e) }));
-      if (!r.ok) alert(r.error || "Could not save that correction. Nothing was written; try again.");
+      if (!r.ok) blocker(r.error || "Could not save that correction. Nothing was written; the assumption still reads as it did.");
+      else clearBlocker();
     };
     inp.onkeydown = e => { if (e.key === "Enter") btn.click(); };
     fix.appendChild(inp);
@@ -751,7 +766,9 @@ function mdToHtml(src) {
     if (bq) { if (list) flush(); quote = quote || []; quote.push(`<p>${inline(bq[1])}</p>`); continue; }
     flush();
     if (/^(-{3,}|\*{3,}|_{3,})$/.test(line)) { out.push("<hr>"); continue; }
-    if (h) { out.push(`<h${h[1].length}>${inline(h[2])}</h${h[1].length}>`); continue; }
+    /* the artifact is a document inside a document: demote its headings one
+       level so the page keeps a single h1 */
+    if (h) { const lvl = Math.min(h[1].length + 1, 6); out.push(`<h${lvl}>${inline(h[2])}</h${lvl}>`); continue; }
     if (!line) continue;
     out.push(`<p>${inline(line)}</p>`);
   }
