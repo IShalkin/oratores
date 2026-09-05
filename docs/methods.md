@@ -203,6 +203,14 @@ Three places had drifted from that and were corrected. `PTH-05` gated on a test 
 Two things are enforced by mechanism:
 
 1. **The critic's tool grant.** No `Write`, no `Edit`, no `Bash`. A tool never granted is a mechanism; a filter over commands is best-effort, and `validate_skill.py` fails the build if the grant drifts.
+
+   That claim was false for most of the day this package was built, and the way it was false is worth more than the claim. The critic's frontmatter carried `memory: user`. Setting `memory:` to any value makes the harness enable `Read`, `Write` and `Edit` automatically, so the subagent can manage its own memory files — which bypasses the `tools` allowlist entirely. So the one property here described as mechanical rather than conventional was, in fact, neither: the tool was granted and nothing said so.
+
+   The validator did not catch it, and could not have: `check_critic_tool_grant` read `tools:` and asserted the absence of write tools there, while the widening came from a field four lines below that nothing looked at. **A check that reads one field and concludes something about the whole grant is a check that reports what it examined as though it had examined the thing.** The suspicion was raised early and set aside, because confirming it needed a restart and the field also appeared in a working package elsewhere — which is a bad reason, and the same bad reason as *it validates, so it is correct*. It was settled by reading the documentation, which took four minutes.
+
+   The field is gone, the reason is written into the critic's own file where the next person to add it will read it, and `validate_skill.py` now fails the build if `memory:` reappears — tested by reintroducing it on a copy. Persistent memory and a withheld write tool are mutually exclusive, and the withheld tool is the one worth keeping.
+
+   Checked at the same time and found true: `skills:` in agent frontmatter preloads the named skill's `SKILL.md` and **only** `SKILL.md`. The `references/*.md` modules and the scripts load on demand. Every agent in this package asserts that about itself, six times, and it is accurate.
 2. **The validators.** Structure, addressing, countability, boundary count, index coverage in both directions, fork wiring.
 
 Everything else — the module budget, the boundary pass, the seven-question cap, the claim labels — is a convention a model follows. It can be declined.

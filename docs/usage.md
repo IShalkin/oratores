@@ -2,6 +2,8 @@
 
 Reusable prompts and what each returns. Everything here works with the router; the fork skills are for when you want the analysis kept out of the main conversation.
 
+For anything short, this is a conversation with one agent and there is nothing to manage. For a real piece it splits across six agents writing files into a run directory — see *When it becomes six agents* below. You do not have to ask for that; the threshold is in the package and it is meant to decide for itself.
+
 ---
 
 ## Choosing where to send a request
@@ -15,6 +17,7 @@ Reusable prompts and what each returns. Everything here works with the router; t
 | A draft to check before it ships | `persuasion-audit` | findings anchored to lines, no rewriting |
 | Someone else's message to understand | `persuasion-audit` | classifies before judging; analyzes all sides equally |
 | A senior audience that agrees and hasn't moved | `exec-activation` | returns the full activation system |
+| A line, a metaphor or an opening and no idea where to start | the router, and ask for candidates | `INV-03` runs the generators instead of waiting for arrival |
 | Anything small | just ask | a two-line toast loads no modules |
 
 ---
@@ -141,13 +144,30 @@ Turn this dataset into a five-minute story for people who won't read the appendi
 
 ---
 
+## When it becomes six agents
+
+Above a stated threshold — roughly over ten minutes or five slides, resting on checkable numbers, meeting a sceptical room, or needing a line that has to be remembered — the work stops being one agent's. What you get back changes shape, so it is worth knowing what to expect.
+
+A directory appears at `run/<id>/`. In it: the brief, the labelled claims, the objection map, the unfiltered candidates, the open decisions, the recorded assumptions, the critic's findings, and the draft. Four specialists produce the structured parts and **one agent writes all the prose**, which is why the piece does not read as four people taking turns.
+
+Three things in there are worth opening before you read the draft.
+
+**`choices.json` — the open decisions.** Where two constructions produce genuinely different results, both are there with the cost each source states. `"unpriced"` means the literature gives none, which is unknown rather than free. `sourced: false` means the trade-off is the agent's judgement rather than a documented one. And where two specialists disagreed, the disagreement is an open choice with both their names on it rather than something quietly resolved — on the first real run, six of eighteen decisions were that kind, and they were the six worth reading first.
+
+**`assumptions.json` — what was defaulted.** A specialist has no way to ask you anything mid-run: a question emitted from a forked context does not pause the work, it ends it. So nothing asks. Every unknown becomes an entry saying what was assumed, why, and what moves in the deliverable if it is wrong. Some are marked `blocking`, meaning the piece stands on them. Correcting one and re-running that agent is the cheapest intervention available to you.
+
+**`findings.json` — the critic's review.** Worst first, each anchored to a line, `CONFIRMED` separated from `SUSPECTED`, and a named list of what it did *not* review. The critic holds no write tool at all, so it cannot fix what it finds, and it cannot quietly improve the draft it is judging.
+
+An optional local panel renders all of this — `python ui/server.py` — and writes back exactly two things: a decided choice and a corrected assumption. Nothing in the package needs it running. With it off you still have the directory and the draft, and that is the deliverable.
+
 ## Prompts that get better answers
 
 - **Name the duration.** It changes everything downstream, and a piece built for the wrong length cannot be trimmed into the right one.
 - **Say what the audience already thinks.** Not their job titles — what they believe, and what they have already heard on the subject. This is the single most useful thing you can supply.
 - **Say what you want them to do**, specifically enough that you would know whether it happened.
 - **Say what the speaker is like.** Register, what they can and cannot pull off, whether they can land a joke.
-- **Say what evidence actually exists**, and say which numbers do not. The package will not invent one, and if you leave the gap unmarked you get a labelled `UNVERIFIED` where you wanted a figure.
+- **Say what evidence actually exists**, and say which numbers do not. The package will not invent one; you get a named gap with who would have to supply it, and the claim keeps its type while its source status reads `UNVERIFIED`.
+- **Say whether you can answer follow-up questions.** In a conversation it will ask up to seven, ranked by how much the answer changes the work. In a fork or a background run it cannot receive an answer, so it asks nothing and defaults instead — which is better output if you were not going to be there, and worse if you were.
 - **Say if you want a plan or the words.** If you do not, you will get the words with the plan in three lines above them.
 
 ## What it will tell you rather than decide for you
@@ -157,6 +177,7 @@ Where a choice has real trade-offs, you get both options with their costs rather
 - Two constructions that produce different effects, each with the trade-off its source states.
 - A mechanism that is strong and short-lived, next to one that is weaker and holds.
 - A move that works now and hardens a division you may need un-hardened later.
+- Two kinds of doubt about a claim, kept apart: what kind of assertion it is — fact, observation, interpretation, forecast, hypothesis, aspiration — and whether anybody checked the source. A fact nobody checked is recorded as exactly that, rather than softened into an opinion to cover the missing check.
 
 Ask for it directly if you want it foregrounded: *"give me two versions — the one that lands hardest and the one that survives being checked, with what each costs."*
 

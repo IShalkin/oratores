@@ -422,6 +422,14 @@ def check_critic_tool_grant() -> None:
         errors.append(
             f"{rel(path)}: critic must not hold write tools; found {sorted(forbidden)}"
         )
+    # `memory:` at any value makes the harness add Read, Write and Edit, which
+    # bypasses the allowlist above. Checking `tools:` alone passed this file for
+    # most of a day while the grant was actually wide open.
+    if re.search(r"^memory:", fm.group(1), re.MULTILINE):
+        errors.append(
+            f"{rel(path)}: critic declares `memory:`, which auto-enables Write and Edit "
+            "and defeats the withheld-tool mechanism; remove the field"
+        )
 
 
 def check_no_maintainer_leak() -> None:
