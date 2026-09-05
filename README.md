@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="ui/mark.png">
+  <img src="ui/mark-light.png" alt="Oratores" width="104" align="right">
+</picture>
+
 # Oratores
 
 `oratores` is a skill package for Claude Code, Codex, and other agents that support `SKILL.md`. It helps an agent plan, design, draft, review and rehearse persuasive communication — a speech, keynote, pitch, deck, data story, town hall, announcement, executive briefing or campaign — without turning every request into a rhetoric lecture.

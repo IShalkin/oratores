@@ -26,6 +26,8 @@ First, the size of the gap. The brandbook specifies a **product** — five modes
 
 **The mark is a raster, where page 4 asks for SVG.** A flat master was supplied on 2026-09-05 and is in use: `mark.png` and `icon.png`, cream field, brass rule, cyan bars, no glow and no shadow. The rail carries the **horizontal lockup** of page 4 — mark left at 34 px, name right in the display face — and the empty state carries the **primary lockup**, mark above the name. `favicon.ico` is cut from the same master. Because it is a raster and not the vector the brandbook specifies, it is used at fixed sizes and never scaled up; the SVG master remains outstanding.
 
+`mark-light.png` is the same geometry with each of the mark's three inks swapped for the light-theme token the brandbook specifies on p.7 — cream to `#182126`, cyan to `#145C63`, gold to `#79602A`, measuring 16.35:1, 7.66:1 and 5.97:1 on white. It exists because the supplied mark is 72% cream, which measures **1.16:1 against white** and is therefore very nearly invisible on GitHub's default light theme. The README serves one variant per theme with `<picture>` and `prefers-color-scheme`.
+
 The earlier concept, with the glow page 4 forbids, is kept on the author's disk as `concept-glow.png`. It is not served, not referenced, not used anywhere in the panel, and not published.
 
 One note on its palette: the mark's bars are a more saturated cyan than the `#8BD4DA` action token. That is left alone deliberately — page 4 says not to recolour the mark with semantic colours, so the mark keeps its own cyan and the interface keeps its own.
