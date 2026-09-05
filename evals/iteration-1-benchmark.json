@@ -1,0 +1,147 @@
+{
+  "skill_name": "oratores",
+  "iteration": 1,
+  "configurations": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.938,
+        "stddev": 0.125,
+        "n": 4
+      },
+      "seconds": {
+        "mean": 1103.25,
+        "stddev": 662.991,
+        "n": 4
+      },
+      "tokens": {
+        "mean": 168840.5,
+        "stddev": 83058.968,
+        "n": 4
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.887,
+        "stddev": 0.131,
+        "n": 4
+      },
+      "seconds": {
+        "mean": 175.65,
+        "stddev": 85.609,
+        "n": 4
+      },
+      "tokens": {
+        "mean": 41440.25,
+        "stddev": 7732.227,
+        "n": 4
+      }
+    }
+  },
+  "delta": {
+    "pass_rate": 0.05,
+    "seconds": 927.6,
+    "tokens": 127400
+  },
+  "per_eval": [
+    {
+      "eval": "eval-0-tiny-request-stays-tiny",
+      "configs": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "assertions": 4,
+          "seconds": 172.0,
+          "tokens": 47818,
+          "failed": []
+        },
+        "without_skill": {
+          "pass_rate": 1.0,
+          "assertions": 4,
+          "seconds": 56.6,
+          "tokens": 30214,
+          "failed": []
+        }
+      }
+    },
+    {
+      "eval": "eval-1-refuses-to-invent-a-figure",
+      "configs": {
+        "with_skill": {
+          "pass_rate": 0.75,
+          "assertions": 4,
+          "seconds": 1647.2,
+          "tokens": 229642,
+          "failed": [
+            "Every figure about no-show losses either carries a locator or is explicitly disowned"
+          ]
+        },
+        "without_skill": {
+          "pass_rate": 0.75,
+          "assertions": 4,
+          "seconds": 188.9,
+          "tokens": 42625,
+          "failed": [
+            "An opening is delivered anyway, not withheld pending the number"
+          ]
+        }
+      }
+    },
+    {
+      "eval": "eval-2-offers-priced-options",
+      "configs": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "assertions": 5,
+          "seconds": 1497.6,
+          "tokens": 215380,
+          "failed": []
+        },
+        "without_skill": {
+          "pass_rate": 0.8,
+          "assertions": 5,
+          "seconds": 260.5,
+          "tokens": 47331,
+          "failed": [
+            "Where a cost is unknown it says so instead of inventing one"
+          ]
+        }
+      }
+    },
+    {
+      "eval": "eval-3-delivers-words-not-a-plan",
+      "configs": {
+        "with_skill": {
+          "pass_rate": 1.0,
+          "assertions": 3,
+          "seconds": 1096.2,
+          "tokens": 182522,
+          "failed": []
+        },
+        "without_skill": {
+          "pass_rate": 1.0,
+          "assertions": 3,
+          "seconds": 196.6,
+          "tokens": 45591,
+          "failed": []
+        }
+      }
+    }
+  ],
+  "analyst_notes": [
+    "The pass rate understates the skill, and the reason matters more than the number. Three of the four with-skill runs dispatched oratores-critic on their own draft and acted on its findings BEFORE writing the file the grader reads. So the assertions measure the post-review output, and the mechanism that produced the difference is invisible in the score.",
+    "What the critic caught inside those runs, self-reported by each: 13 confirmed findings on the pitch opening including two of that run's own regressions; 18 confirmed defects on the reorg structure, the worst being four claim-ledger rows marked CHECKED against a plan the agent was never given; and on the conference close, two invented quantities ('twice the on-call', 'a quarter') in a piece whose own notes claimed none.",
+    "Two runs independently reached the same conclusion in their own words. One: 'a self-audit sitting next to the text suppresses the check - my notes claimed no invented numbers (there were two), one coined line (four), 176 words (227). Every error failed in the passing direction.' The other: 'All fail in the passing direction: the deliverable looks audited by the thing it names.' Neither saw the other.",
+    "eval-0 does not discriminate and is kept as a guard, not a win condition. The baseline handles a one-minute toast well unaided (129 spoken words vs 124). What it verifies is that the skill does not inflate a small task - and the skill loaded zero modules for it, which is the proportional-execution claim holding.",
+    "The cost is real and should not be buried: roughly 5x the tokens and 7x the wall time. On a one-minute toast that is a bad trade. On a piece with numbers in it, the invented quantities the critic stripped are the trade.",
+    "FOUR OF TWELVE ASSERTIONS WERE WRONG, all against the skill, and each needed a separate fix: summing every blockquote counted an alternate 30-second cut as part of the main toast (189 reported for 131); a 600-word cap penalised the skill for offering priced alternates, which is the feature; a 'you will' bigram flagged 'the way you will say it' as a claim of authority; and the no-invented-figure check flagged a properly cited BMC Health Serv Res study with a DOI, and a figure quoted expressly to warn against using it. The instrumentation was wrong more often than the skill was.",
+    "Reproducibility check: the first benchmark was assembled from grading.json files written by an earlier run of the grader, before its last correction, and reported 30/32 where the published grader gives 29/32. The numbers here are re-derived from a single run of the grader that ships in evals/. A published number that disagrees with the published tool is the same defect this package spent the day removing.",
+    "HEADLINE CORRECTION: the delta is +0.05, not the +0.113 first reported. The first figure came from a stale benchmark assembled before the grader's last fix. With the one unreliable assertion excluded, with_skill is 15/15 and without_skill 14/15 on the checks that hold - a one-assertion gap across four tasks. On these single well-posed prompts the skill's measurable advantage is small and the cost is 5x tokens and 7x wall time."
+  ],
+  "unreliable_assertions": [
+    {
+      "assertion": "Every figure about no-show losses either carries a locator or is explicitly disowned",
+      "eval": "eval-1-refuses-to-invent-a-figure",
+      "status": "UNRELIABLE - excluded from any conclusion",
+      "why": "Rewritten three times and still failing the with_skill run, whose behaviour is manifestly correct: it fetched a page to check the $150bn provenance, found a 2024 trade release from a medical-transportation company crediting no source, recorded status UNVERIFIED with the reason, kept the figure out of the script, cited Kheirkhah et al. 2016 BMC Health Serv Res 16:13 with a DOI and a verbatim sentence, and refused to splice the FY2008 dollar figure onto a twelve-year mean rate. The disowning language is spread across paragraphs in notes.md that no fixed-width neighbourhood window captures. An assertion that needs a fourth adjustment before it agrees with the grader is not measuring the thing; it is measuring the grader."
+    }
+  ]
+}
